@@ -1,0 +1,1182 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+
+\documentclass[runningheads]{llncs}
+
+\usepackage{graphicx}
+\let\counterwithout\relax
+\let\counterwithin\relax
+\usepackage[english]{babel}
+\usepackage{amsfonts}
+\usepackage{inputenc}
+\usepackage[ruled]{algorithm}
+\usepackage{color}
+%\usepackage{graphicx}
+\usepackage{algpseudocode}
+\usepackage{booktabs,multicol,multirow}
+\usepackage{fancyhdr}
+\usepackage{epic}
+%\usepackage{ascii}
+\usepackage{xspace}
+\usepackage{amssymb,amsmath,verbatim}
+%\usepackage[final]{pdfpages}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{adjustbox}
+\usepackage{threeparttable}
+\usepackage{float}
+\let\proof\relax 
+\let\endproof\relax
+\usepackage{amsthm}
+\interdisplaylinepenalty=2500
+\usepackage{chngcntr}
+
+
+\usepackage{lipsum}
+\newtheorem{thm}{Theorem}%[section]
+\newtheorem{fact}[thm]{Heuristic}%[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{assume}{Assumption}
+\newtheorem{conj}{Conjecture}
+%\newtheorem{fact}{Fact}
+
+\providecommand{\keywords}[1]{\textbf{\textit{Key words: }} #1}
+
+\def\NN{\mathbb{N}}
+\def\ZZ{\mathbb{Z}}
+\def\QQ{\mathbb{Q}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\Fq{\mathbb{F}_q}
+\def\KK{\mathbb{K}}
+\def\LL{\mathbb{L}}
+\def\OK{\mathcal{O}_{\KK}}
+\def\OL{\mathcal{O}_{\LL}}
+%\def\rm{\mathrm}
+\def\cal{\mathcal}
+\def\bf{\mathbf}
+\def\calL{\mathcal{L}}
+\def\normKL{\rm{N}_{\KK/\LL}}
+\def\TrapGen{\mathsf{TrapGen}}
+\def\PK{\mathsf{PK}}
+\def\SK{\mathsf{SK}}
+\def\PP{\mathsf{PP}}
+\def\MSK{\mathsf{MSK}}
+\def\SKS{\mathsf{sk_s}}
+\def\MTK{\mathsf{MTK}}
+\def\tok{\mathsf{tok}}
+\def\CT{\mathsf{CT}}
+\def\SampleLeft{\mathsf{SampleLeft}}
+\def\SampleRight{\mathsf{SampleRight}}
+\def\SampleBasisLeft{\mathsf{SampleBasisLeft}}
+\def\td{\mathsf{td}}
+\def\Decrypt{\mathsf{Decrypt}}
+\def\Setup{\mathsf{Setup}}
+\def\KeyGen{\mathsf{KeyGen}}
+\def\Enc{\mathsf{Enc}}
+\def\Extract{\mathsf{Extract}}
+\def\Ext{\mathsf{Ext}}
+\def\Dec{\mathsf{Dec}}
+\def\Td{\mathsf{Td}}
+\def\Test{\mathsf{Test}}
+\def\Pr{\mathrm{Pr}}
+\def\Adv{\mathsf{Adv}}
+\def\OW{\textsf{OW-ID-CPA}}
+\def\IND{\textsf{IND-ID-CPA}}
+\def\wIND{\textsf{wIND-ID-CPA}}
+\def\a{\alpha}
+\def\u{\bf{u}}
+\def\v{\bf{v}}
+\def\t{\theta}
+\def\e{\bf{e}}
+\def\d{\bf{d}}
+\def\m{\bf{m}}
+\def\x{\bf{x}}
+\def\g{\bf{g}}
+\def\Event{\mathsf{Event}}
+\def\Abort{\mathsf{Abort}}
+\def\Fail{\mathsf{Fail}}
+\def\Succ{\mathsf{Succ}}
+\def\L{\Lambda}
+\def\Lp{\Lambda^{\perp}}
+\def\b{\bf{b}}
+\def\s{\bf{s}}
+\def\c{\bf{c}}
+\def\D{\cal{D}_{\L,\sigma}}
+\def\DuA{\cal{D}_{\L_q^{\u}(A),\sigma}}
+\def\ID{\mathsf{ID}}
+\def\E{\cal{E}}
+\def\W{\cal{W}}
+
+% Used for displaying a sample figure. If possible, figure files should
+% be included in EPS format.
+%
+% If you use the hyperref package, please uncomment the following line
+% to display URLs in blue roman font according to Springer's eBook style:
+% \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+\begin{document}
+	%
+	\title{Lattice-based IBE with equality test in standard model}
+%	\titlerunning{A lattice-based IBEET with equality test in standard model}
+	\authorrunning{D. H. Duong, H. Q. Le, P. S. Roy and W. Susilo}
+	\author{Dung Hoang Duong\inst{1} \and Huy Quoc Le\inst{2} \and Partha Sarathi Roy\inst{3} \and Willy Susilo\inst{1}}
+	\institute{Institute of Cybersecurity and Cryptology, School of Computing and Information Technology, University of Wollongong\\
+		Northfields Avenue, Wollongong NSW 2522, Australia\\
+		\email{\{hduong,wsusilo\}@uow.edu.au} 
+		\and 
+		Graduate School of Mathematics, Kyushu University\\ 744 Motooka, Nishi-ku,
+		Fukuoka-shi, Fukuoka-ken 819-0395, Japan \\
+		\email{q-le@math.kyushu-u.ac.jp}
+	\and
+	Information Security Laboratory, KDDI Research, Inc.\\
+		2-1-15 Ohara, Fujimino-shi, Saitama, 356-8502, Japan\\
+		\email{pa-roy@kddi-research.jp}	
+	}
+	%
+	
+	
+	\maketitle              
+	
+	\begin{abstract}
+		Public key encryption with equality test (PKEET) allows the testing of equality of underlying messages of two ciphertexts. PKEET is a potential candidate for many practical applications like efficient data management on encrypted databases. Identity-based encryption scheme with equality test (IBEET), which was introduced by Ma (Information Science 2016), can simplify the certificate management of PKEET. Potential applicability of IBEET leads to intensive research from its first instantiation. Ma's IBEET and most of the constructions are proven secure in the random oracle model based on number-theoretic hardness assumptions which are vulnerable in the post-quantum era. Recently, Lee et al. (ePrint 2016) proposed a generic construction of IBEET schemes in the standard model and hence it is possible to yield the first instantiation of IBEET schemes based on lattices. Their method is to use a $3$-level hierarchical identity-based encryption (HIBE) scheme together with a one-time signature scheme. In this paper, we propose, for the first time, a concrete construction of an IBEET scheme based on the hardness assumption of lattices in the standard model and compare the data sizes with the instantiation from Lee et al. (ePrint 2016). Further, we have modified our proposed IBEET to make it secure against {\em insider attack}. %The idea comes from the full identity-based encryption scheme by Agrawal et al. (EUROCRYPT 2010).
+	
+	\end{abstract}
+%	\keywords{IBE with equality test, Lattice-based cryptography,  Learning with errors.}
+	%
+	%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Introduction}
+	
+	The concept of IBEET is the combination of PKEET and identity-based encryption (IBE). IBEET can simplify the certificate management of PKEET with all messages encrypted with the receiver's public identity. IBEET is a special kind of IBE featuring equality test between ciphertexts under different as well as the same identity. This property is very useful in various practical applications, such as keyword search on encrypted data, encrypted data partitioning for efficient encrypted data management, personal health record system and spam filtering in encrypted email systems. Due to its numerous practical applications, there have been elegant research outcomes in this direction with the appearance of improved schemes or ones with additional functionalities~\cite{IBEET-Ma16,Lee16,IBEET-Wu17}. However, they are all proven  secure in the random oracle model which does not exist in reality. Therefore it is necessary to construct such a scheme in the standard model. Moreover, all aforementioned existing schemes base their security on some number-theoretic hardness assumptions which will be efficiently solved in the quantum era~\cite{Shor97}.  Up to the present, there is only one IBEET scheme secure in the standard model, which was generically constructed by Lee et al.~\cite{Lee2016}. Their method is to use a $3$-level hierarchical identity-based encryption (HIBE) scheme together with a one-time signature scheme.  This is the first one with the possibility of yielding a post-quantum instantiation based on lattices, since lattice-based cryptography is the only one among other post-quantum areas up to present offers  HIBE primitives, e.g., \cite{ABB10-EuroCrypt} . Hence it remains a question of either yielding an efficient instantiation or directly constructing an IBEET based on lattices.
+
+On the other hand, supporting equality tests makes the security of IBEET schemes weaken. If the adversary can have a trapdoor for the equality test on the target ciphertext, he can generate a ciphertext of any message by himself and perform equality tests between the target ciphertext and the ciphertext generated by himself. We call this type of attacks as an {\em insider attack} \cite{IBEET-Wu17}. IBEET secure against insider attack is proposed by Wu et al. \cite{IBEET-Wu17}. There is a security flaw which is fixed by Lee et al. \cite{IBEET-Lee18}. However, the construction is secure in the random oracle model based on number-theoretic hardness assumption. So, it is required to consider the secure construction in standard model  based on the hardness assumptions which will remain secure in post-quantum era.
+	
+	\noindent\textbf{\em Our contribution:}
+	In this paper, our contribution is twofold:
+	\begin{itemize}
+	\item According to the best of our knowledge, we propose the first concrete construction of an addaptive secure IBEET scheme secure in the standard model based on the hardness assumption of lattices. From Table \ref{tab1}, it is evident that the proposed construction outperformed the instantiation from \cite{Lee2016}.
+	{\renewcommand{\arraystretch}{1.2}
+	\setlength{\tabcolsep}{5pt}
+	\begin{table}[ht]
+		\footnotesize
+		%\label{T1}
+		\begin{center}
+			\caption{Comparison of Proposed IBEET with instantiation from \cite{Lee2016}.}
+			\begin{tabular}{c c c c c}
+				\toprule
+				Scheme & Ciphertext & Public Key & Master Secret Key & Secret Key \\ 
+				              %& (No. of Field Elements) & Public Key & Master Secret Key & Secret Key \\ 
+				\midrule
+			
+				Proposed & $2t + 4m$ &  $(l+3)mn+nt$ & $2m^2$ & $4mt$\\
+				Instantiation$^*$ &  $8m+2t +2mt$ &  $(l+3)mn+nt$ & $2m^2$ & $2mt$\\
+				from \cite{Lee2016} &  &   &  &\\
+				\toprule
+				
+				\multicolumn{5}{l}{ \parbox[t]{1.0\textwidth}{$^*$ see Appendix A; $^{**}$ Data sizes are in number of field elements. In case of \cite{Lee2016}, we do not count the part of  ciphertex which is possible to obtain from the public key. }} \\
+			\end{tabular}
+			\label{tab1}
+		\end{center}
+		
+	\end{table}
+}
+\normalsize
+	\item We have modified the proposed IBEET to make it secure against insider attack. This is also secure in the standard model based on the hardness assumption of lattices, whereas the previous constructions are secure in the random oracle model based on the number-theoretic hardness assumptions.
+	\end{itemize}
+Our ideas come from the use of the full lattice-based IBE  in the standard model by Agrawal et al.~\cite{ABB10-EuroCrypt} and a recent technique by Duong et al.~\cite{Duong19} in directly constructing a PKEET based on lattices in the standard model. 
+\begin{rem}
+	Our proposed schemes achieve only IND-CPA security (defined in Section~\ref{sec:prelim}), which can be modified to achieve IND-CCA2 security by using the HIBE scheme in~\cite{ABB10-EuroCrypt} through the BCHK's transformation~\cite{BCHK07}. Hence in definition of security model in Section~\ref{sec:prelim}, we provide only the definition of CPA-security models, in which the adversary cannot query the decryption oracle.
+\end{rem}
+
+
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Preliminaries}\label{sec:prelim}
+	\subsection{Identity-based encryption with equality test (IBEET)}
+%	In this section, we will recall the model of IBEET and its security model.
+	
+%	We remark that a PKEET system is a multi-user setting. Hence we assume that in our system throughout the paper, each user is assigned with an index $i$ with $1\leq i\leq N$ where $N$ is the number of users in the system.
+	
+	\begin{defn}[IBEET] \label{def:PKEET}
+		An identity-based encryption with equality test (IBEET) consists of the following polynomial-time algorithms:
+		\begin{itemize}
+			\item $\Setup(\lambda)$: On input a security parameter $\lambda$ and set of parameters, it outputs a public parameter $\PP$ and a master secret key $\MSK$. Note that $\PP$ consists of the information of the message space $\cal{M}$ and we assume that all other algorithms take $\PP$ as an input implicitly without stated.
+			\item $\Extract(\PP,\MSK,\ID)$: On input $\PP, \MSK$ and an identity $\ID$, it outputs a user $\ID$'s secret key $\SK_{\ID}$.
+			\item $\Enc(\PP,\ID,\bf{m})$: On input  $\PP$, an identity $\ID$ and a message $\bf{m}$, it outputs a ciphertext $\CT$.
+			\item $\Dec(\PP,\SK_{\ID},\CT)$: On input $\PP$, a user $\ID$'s secret key $\SK$ and a ciphertext $\CT$, it outputs a message $\bf{m}'$ or $\perp$.
+			\item $\Td(\SK_{\ID})$: On input the secret key $\SK_{\ID}$ for the user $\ID$, it outputs a trapdoor $\td_{\ID}$.
+			\item $\Test(\td_{\ID_i},\td_{\ID_j},\CT_{\ID_i},\CT_{\ID_j})$: On input two trapdoors $\td_{\ID_i}, \td_{\ID_j}$ and two ciphertexts $\CT_{\ID_i}, \CT_{\ID_j}$ for users $\ID_i$ and $\ID_j$ respectively, it outputs $1$ or $0$.
+		\end{itemize}    
+	\end{defn}
+	
+	\noindent\textbf{Correctness.} We say that an IBEET scheme is \textit{correct} if the following conditions hold:
+	\begin{description}
+		\item[(1)] For any security parameter $\lambda$, any user $\ID_i$ and any message $\bf{m}$, it holds that
+		$$\Pr\left[ {\begin{gathered}
+			\Dec(\PP,\SK_{\ID},\CT_{\ID})=\bf{m}\end{gathered}  
+			\left| \begin{gathered}
+			\SK_{\ID}\gets\Extract(\PP,\MSK,\ID)\\
+			\CT_{\ID}\gets\Enc(\PP,\ID,\bf{m})
+			\end{gathered}  \right.} \right]=1.$$
+		\item[(2)] For any security parameter $\lambda$, any users $\ID_i$, $\ID_j$ and any messages $\bf{m}_i, \bf{m}_j$, it holds that:    
+		$$\Pr\left[{
+			\Test\left( \begin{gathered}
+			\td_{\ID_i} \\
+			\td_{\ID_j} \\
+			\CT_{\ID_i} \\
+			\CT_{\ID_j} \\ 
+			\end{gathered}  \right) = 1\left| \begin{array}{l}
+			\SK_{\ID_i}\gets\Extract(\PP,\MSK,\ID_i) \\
+			\CT_{\ID_i}\gets\Enc(\PP,\ID_i,\bf{m}_i) \\
+			\td_{\ID_i}\gets\Td(\SK_{\ID_i}) \\
+			\SK_{\ID_j}\gets\Extract(\PP,\MSK,\ID_j) \\
+			\CT_{\ID_j}\gets\Enc(\PP,\ID_j,\bf{m}_j) \\
+			\td_{\ID_j}\gets\Td(\SK_{\ID_j}) 
+			\end{array}  \right.} \right]$$
+	is  $1$	if $\bf{m}_i=\bf{m}_j$ and 
+		is negligible in $\lambda$ for any ciphertexts $\CT_i$, $\CT_j$ such that $\Dec(\SK_i,\CT_i)\ne\Dec(\SK_j,\CT_j)$, regardless of whether $i=j$.
+	\end{description}
+	
+	\noindent\textbf{Security model of IBEET.} For the security model of IBEET, we consider two types of adversaries:
+	\begin{itemize}
+		\item[$\bullet$] Type-I adversary: for this type, the adversary can request to issue a trapdoor for the target identity and thus can perform equality tests on the challenge ciphertext. The aim of this type of adversaries is to reveal the message in the challenge ciphertext.
+		\item[$\bullet$] Type-II adversary: for this type, the adversary cannot request to issue a trapdoor for the target identity and thus cannot perform equality tests on the challenge ciphertext. The aim of this type of adversaries is to distinguish which message is in the challenge ciphertext between two candidates.
+	\end{itemize}
+	The security model of a IBEET scheme against two types of adversaries above is described in the following.\\
+	
+	\noindent\textbf{OW-ID-CPA security against Type-I adversaries.} We illustrate the game between a challenger $\cal{C}$ and a Type-I adversary $\cal{A}$ who can have a trapdoor for all ciphertexts of the target identity, say $\ID^*$, that he wants to attack, as follows:
+	\begin{enumerate}
+		\item \textbf{Setup:} The challenger $\cal{C}$ runs $\Setup(\lambda)$ to generate the pair $(\PP,\MSK)$, and sends the public parameter $\PP$ to $\cal{A}$.
+		\item \textbf{Phase 1:}  The adversary $\cal{A}$ may make queries polynomially many times adaptively and in any order to the following oracles:
+		\begin{itemize}
+			\item $\cal{O}^{\Ext}$: an oracle that on input an identity $\ID$ (different from $\ID^*$), returns the $\ID$'s secret key $\SK_{\ID}$.
+		%	\item $\cal{O}^\Dec$: an oracle that on input a pair of an identity $\ID$ and a ciphertext $\CT$, returns the output of $\Dec(\PP,\SK_{\ID},\CT)$ using the secret key  $\SK_{\ID}$ of the identity $\ID$.
+			\item $\cal{O}^\Td$: an oracle that on input an identity $\ID$, return $\td_{\ID}$ by running $\td_{\ID}\gets\Td(\SK_{\ID})$ using the secret key $\SK_{\ID}$ of the identity $\ID$.
+		\end{itemize}
+		\item \textbf{Challenge:} $\cal{C}$ chooses a random message $\bf{m}$ in the message space and run $\CT^*_{\ID^*}\gets\Enc(\PP,\ID^*,\bf{m})$, and sends $\CT_{\ID^*}^*$ to $\cal{A}$.
+		\item \textbf{Phase 2:} $\cal{A}$ can query as in Phase $1$ with the constraint that the identity $\ID^*$ cannot be queried to the key generation oracle $\cal{O}^{\Ext}$.
+	%	\begin{itemize}
+	%		\item The identity $\ID^*$ cannot be queried to the key generation oracle $\cal{O}^{\Ext}$;
+		%	\item The pair of the identity $\ID^*$ and the ciphertext $\CT_{\ID^*}^*$ cannot be queried to the decryption oracle $\cal{O}^\Dec$.
+	%	\end{itemize}
+		\item \textbf{Guess:} $\cal{A}$ output $\bf{m}'$.
+	\end{enumerate}
+	The adversary $\cal{A}$ wins the above game if $\bf{m}=\bf{m}'$ and the success probability of $\cal{A}$ is defined as
+	$$\Adv^{\OW}_{\cal{A},\text{IBEET}}(\lambda):=\Pr[\bf{m}=\bf{m}'].$$
+	\begin{rem}
+		If the message space is polynomial in the security parameter or the min-entropy of the message distribution is much lower than the security parameter then a Type-I adversary $\cal{A}$ with a trapdoor for the challenge ciphertext can reveal the message in polynomial-time or small exponential time in the security parameter, by performing the equality tests with the challenge ciphertext and all other ciphertexts of all messages generated by himself. Hence to prevent this attack, we assume that the size of the message space $\cal{M}$ is exponential in the security parameter and the min-entropy of the message distribution is sufficiently higher than the security parameter.
+	\end{rem}
+	
+	\noindent\textbf{IND-ID-CPA security against Type-II adversaries.} We present the game between a challenger $\cal{C}$ and a Type-II adversary $\cal{A}$ who cannot have a trapdoor for all ciphertexts of the target identity $\ID^*$ as follows:
+	\begin{enumerate}
+		\item \textbf{Setup:} The challenger $\cal{C}$ runs $\Setup(\lambda)$ to generate $(\PP,\MSK)$ and gives the public parameter $\PP$ to $\cal{A}$.
+			\item \textbf{Phase 1:}  The adversary $\cal{A}$ may make queries polynomially many times adaptively and in any order to the following oracles:
+		\begin{itemize}
+			\item $\cal{O}^{\Ext}$: an oracle that on input an identity $\ID$ (different from $\ID^*$), returns the $\ID$'s secret key $\SK_{\ID}$.
+		%	\item $\cal{O}^\Dec$: an oracle that on input a pair of an identity $\ID$ and a ciphertext $\CT$, returns the output of $\Dec(\PP,\SK_{\ID},\CT)$ using the secret key  $\SK_{\ID}$ of the identity $\ID$.
+			\item $\cal{O}^\Td$: an oracle that on input an identity $\ID$, return $\td_{\ID}$ by running $\td_{\ID}\gets\Td(\SK_{\ID})$ using the secret key $\SK_{\ID}$ of the identity $\ID$.
+		\end{itemize}
+		\item \textbf{Challenge:} $\cal{A}$ selects a target user $\ID^*$, which was never queried to the $\cal{O}^{\Ext}$ and  $\cal{O}^\Td$ oracles in Phase 1, and two messages $\bf{m}_0$ $\bf{m}_1$ of same length and pass to $\cal{C}$, who then selects a random bit $b\in\{0,1\}$, runs $\CT^*_{\ID^*, b}\gets\Enc(\PP,\ID^*,\bf{m}_b)$ and sends $\CT^*_{\ID^*,b}$ to $\cal{A}$.
+		\item \textbf{Phase 2:} $\cal{A}$ can query as in Phase $1$ with the constraint that the target identity $\ID^*$ cannot be queried to the secret key extraction oracle $\cal{O}^{\Ext}$ and the trapdoor generation oracle $\cal{O}^\Td$.
+	%	\begin{itemize}
+		%	\item The target identity $\ID^*$ cannot be queried to the secret key extraction oracle $\cal{O}^{\Ext}$ and the trapdoor generation oracle $\cal{O}^\Td$;
+		%	\item The pair of the target identity $\ID^*$ and the ciphertext $\CT_{\ID^*,b}^*$ cannot be queried to the decryption oracle $\cal{O}^\Dec$.
+		%\end{itemize}
+		\item \textbf{Guess:} $\cal{A}$ output $b'$.
+	\end{enumerate}
+	The adversary $\cal{A}$ wins the above game if $b=b'$ and the advantage of $\cal{A}$ is defined as
+	$$\Adv_{\cal{A},\text{IBEET}}^{\IND}:=\left|\Pr[b=b']-\frac{1}{2}\right|.$$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{IBEET against insider attack}
+\begin{defn} An IBEET against insider attack consists of the following polynomial-time algorithms:
+	\begin{itemize}
+		\item $\Setup(\lambda)$: On input a security parameter $\lambda$, it outputs a public parameter $\PP$, a master secret key $\MSK$ and a master token key $\MTK$.
+		\item $\Extract(\ID,\MSK,\MTK)$: On input an identity $\ID$, the master secret key $\MSK$ and a master token key $\MTK$, it outputs the secret key $\SK_\ID$ and token $\tok_\ID$ for the identity $\ID$.
+		
+		It is assumed that $\SK_\ID$ and $\tok_\ID$ are delivered to the user of identity $\ID$ and the token $\tok_\ID$ is delivered to all group users via secure channel.
+		\item $\Enc(\PP,\bf{m},\ID,\tok_\ID)$: On input $\PP$, an identity $\ID$ with its token $\tok_\ID$ and a message $\bf{m}$, it outputs a ciphertext $\CT$.
+		\item $\Dec(\CT,\SK_{\ID},\tok_\ID)$: On input a ciphertext $\CT$, the secret key $\SK_\ID$ and token $\tok_\ID$ of the identity $\ID$, it outputs a message $\bf{m}'$ or $\perp$.
+		\item $\Test(\CT_i,\CT_j)$: On input two ciphertexts $\CT_i$ and $\CT_j$, it outputs $1$ or $0$.
+	\end{itemize}
+\end{defn}
+
+\noindent\textbf{Correctness.} We say that the above IBEET is correct if the following holds:
+\begin{description}
+	\item[(1)] For any security parameter $\lambda$, identity $\ID$ and message $\bf{m}$, it holds that
+	$$\Pr[\bf{m}\gets\Dec(\CT,\SK_{\ID},\tok_\ID)]=1$$
+	where $(\PP,\MSK,\MTK)\gets\Setup(\lambda)$, $(\SK_\ID,\tok_\ID)\gets\Extract(\ID,\MSK,\MTK)$ and $\CT\gets\Enc(\PP,\bf{m},\ID,\tok_\ID)$.
+	\item[(2)] For any security parameter $\lambda$, identities $\ID_i, \ID_j$ and messages $\bf{m}_i,\bf{m}_j$, it holds that 
+	$$\Pr\left[{
+		\Test\left( \CT_i,\CT_j \right) = 1\left| \begin{array}{l}
+		(\PP,\MSK,\MTK)\gets\Setup(\lambda) \\
+		(\SK_{\ID_i},\tok_{\ID_i})\gets\Extract(\ID_i,\MSK,\MTK) \\
+		(\SK_{\ID_j},\tok_{\ID_j})\gets\Extract(\ID_j,\MSK,\MTK) \\
+		\CT_i\gets\Enc(\PP,\bf{m}_i,\ID_i,\tok_{\ID_i}) \\
+		\CT_j\gets\Enc(\PP,\bf{m}_j,\ID_j,\tok_{\ID_j})
+		\end{array}  \right.} \right]$$
+	is $1$ if $\bf{m}_i=\bf{m}_j$ and negligible in the security parameter $\lambda$ otherwise.
+\end{description}
+
+\noindent\textbf{Security model.} The security model of IBEET against insider attack~\cite{IBEET-Wu17} is slightly weaker than the formal security model of traditional IBE. In such a scheme, two messages $\bf{m}_0$ and $\bf{m}_1$ submitted by the adversary to the challenger should not be queried to the encryption oracle before and after the challenge phase. We call this security model the weak indistinguishability under adaptive identity and chosen message attacks ($\wIND$). In particular, we present the game between the challenger $\cal{C}$ and the adversary $\cal{A}$ as the following.
+\begin{enumerate} 
+\item \textbf{Setup:} The challenger $\cal{C}$ runs $\Setup(\lambda)$ to generate $(\PP,\MSK,\MTK)$ and gives the public parameter $\PP$ to $\cal{A}$.
+\item \textbf{Phase 1:}  The adversary $\cal{A}$ may make queries polynomially many times adaptively and in any order to the following oracles:
+\begin{itemize}
+	\item $\cal{O}^{\Ext}$: an oracle that on input an identity $\ID$, returns the $\ID$'s secret key $\SK_{\ID}$, where $(\SK_\ID,\tok_\ID)\gets\Extract(\ID,\MSK,\MTK)$.
+	\item $\cal{O}^\Enc$: an oracle that on input a pair of an identity $\ID$ and a message $\bf{m}$, returns the output of $\Enc(\PP,\bf{m},\ID,\tok_{\ID})$.
+%	\item $\cal{O}^\Dec$: an oracle that on input an identity $\ID$, a ciphertext $\CT_ID$, returns $\bf{m}$ by running $\bf{m}\gets\Dec(\CT_\ID,\SK_{\ID},\tok_{\ID})$ for $(\SK_\ID,\tok_{\ID})\gets\Extract(\ID,\MSK,\MTK)$.
+\end{itemize}
+\item \textbf{Challenge:} $\cal{A}$ submits a target identity $\ID^*$ and two messages $\bf{m}_0$, $\bf{m}_1$ of same length to $\cal{C}$, where $\ID^*$ was never queried to $\cal{O}^{\Ext}$ and  $\bf{m}_0$, $\bf{m}_1$ were never queried to $\cal{O}^\Enc$ in Phase 1. Then $\cal{C}$ picks a random bit $b\in\{0,1\}$, runs $\CT^*_{\ID^*,b}\gets\Enc(\PP,\bf{m}_b,\ID^*,\tok_{\ID^*})$, and sends $\CT^*_{\ID^*,b}$ to $\cal{A}$.
+\item \textbf{Phase 2:} $\cal{A}$ can query as in Phase $1$ with the following constraints:
+\begin{itemize}
+	\item The target identity $\ID^*$ cannot be queried to  $\cal{O}^{\Ext}$;
+	\item The submitted messages  $\bf{m}_0$, $\bf{m}_1$ cannot be queried to $\cal{O}^\Enc$;
+%	\item The pair of the target identity $\ID^*$ and the ciphertext $\CT_{\ID^*,b}^*$ cannot be queried to the decryption oracle $\cal{O}^\Dec$.
+\end{itemize}
+\item \textbf{Guess:} $\cal{A}$ outputs a bit $b'$.
+\end{enumerate}
+The adversary $\cal{A}$ wins the above game if $b=b'$ and the advantage of $\cal{A}$ is defined as
+$$\Adv_{\cal{A},\text{IBEET}}^{\wIND}:=\left|\Pr[b=b']-\frac{1}{2}\right|.$$
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%
+	\subsection{Lattices}
+	Throughout the paper, we will mainly focus on integer lattices, which are discrete subgroups of $\ZZ^m$. Specially, a lattice $\Lambda$ in $\ZZ^m$ with basis $B=[\b_1,\cdots,\b_n]\in\ZZ^{m\times n}$, where each $\b_i$ is written in column form, is defined as
+	$$\Lambda:=\left\{\sum_{i=1}^n\b_ix_i | x_i\in\ZZ~\forall i=1,\cdots,n \right\}\subseteq\ZZ^m.$$
+	We call $n$ the rank of $\L$ and if $n=m$ we say that $\L$ is a full rank lattice. In this paper, we mainly consider full rank lattices containing $q\ZZ^m$, called $q$-ary lattices, defined as the following, for a given matrix $A\in\ZZ^{n\times m}$ and $\bf{u}\in\ZZ_q^n$
+	\begin{align*}
+	\L_q(A) &:= \left\{ \e\in\ZZ^m ~\rm{s.t.}~ \exists \bf{s}\in\ZZ_q^n~\rm{where}~A^T\bf{s}=\bf{e}\mod q \right\}\\
+	\Lp_q(A) &:= \left\{ \e\in\ZZ^m~\rm{s.t.}~A\e=0\mod q \right\} \\
+	\L_q^{\bf{u}}(A) &:=  \left\{ \e\in\ZZ^m~\rm{s.t.}~A\e=\bf{u}\mod q \right\}
+	\end{align*}
+	Note that if $\bf{t}\in\L_q^{\bf{u}}(A)$ then $\L_q^{\bf{u}}(A)=\Lp_q(A)+\bf{t}$.
+	
+	Let $S=\{\s_1,\cdots,\s_k\}$ be a set of vectors in $\mathbb{R}^m$. We denote by $\|S\|:=\max_i\|\s_i\|$ for $i=1,\cdots,k$, the maximum $l_2$ length of the vectors in $S$. We also denote $\tilde{S}:=\{\tilde{\s}_1,\cdots,\tilde{\s}_k \}$ the Gram-Schmidt orthogonalization of the vectors $\s_1,\cdots,\s_k$ in that order. We refer to $\|\tilde{S}\|$ the Gram-Schmidt norm of $S$.
+	
+	Ajtai~\cite{Ajtai99} first proposed how to sample a uniform matrix $A\in\ZZ_q^{n\times m}$ with an associated basis $S_A$ of $\Lp_q(A)$ with low Gram-Schmidt norm. It is improved later by Alwen and Peikert~\cite{AP09} in the following Theorem.
+	
+	\begin{theorem}\label{thm:TrapGen}
+		Let $q\geq 3$ be odd and $m:=\lceil 6n\log q\rceil$. There is a probabilistic polynomial-time algorithm $\TrapGen(q,n)$ that outputs a pair $(A\in\ZZ_q^{n\times m},S\in\ZZ^{m\times m})$ such that $A$ is statistically close to a uniform matrix in $\ZZ_q^{n\times m}$ and $S$ is a basis for $\Lp_q(A)$ satisfying
+		\[\|\tilde{S}\|\leq O(\sqrt{n\log q})\quad\text{and}\quad\|S\|\leq O(n\log q)\]
+		with all but negligible probability in $n$.
+	\end{theorem}
+	
+	\begin{definition}[Gaussian distribution]
+		Let $\L\subseteq\ZZ^m$ be a lattice. For a vector $\bf{c}\in\RR^m$ and a positive parameter $\sigma\in\RR$, define:
+		$$\rho_{\sigma,\c}(\x)=\exp\left(\pi\frac{\|\x-\c\|^2}{\sigma^2}\right)\quad\text{and}\quad
+		\rho_{\sigma,\c}(\L)=\sum_{\x\in\L}\rho_{\sigma,\c}(\x).    $$
+		The discrete Gaussian distribution over $\L$ with center $\c$ and parameter $\sigma$ is
+		$$\forall \bf{y}\in\L\quad,\quad\cal{D}_{\L,\sigma,\c}(\bf{y})=\frac{\rho_{\sigma,\c}(\bf{y})}{\rho_{\sigma,\c}(\L)}.$$
+	\end{definition}
+	For convenience, we will denote by $\rho_\sigma$ and $\cal{D}_{\L.\sigma}$ for $\rho_{\bf{0},\sigma}$ and $\cal{D}_{\L,\sigma,\bf{0}}$ respectively. When $\sigma=1$ we will write $\rho$ instead of $\rho_1$. We recall below in Theorem~\ref{thm:Gauss} some useful results. The first one comes from~{\cite[Lemma 4.4]{MR04}} . The second one is from~\cite{CHKP10} and formulated in ~{\cite[Theorem 17]{ABB10-EuroCrypt}} and the last one is from~{\cite[Theorem 19]{ABB10-EuroCrypt}}.
+	
+	\begin{theorem}\label{thm:Gauss}
+		Let $q> 2$ and let $A, B$ be a matrix in $\ZZ_q^{n\times m}$ with $m>n$ and $B$ is rank $n$. Let $T_A, T_B$ be a basis for $\Lp_q(A)$ and  $\Lp_q(B)$ respectively.
+		Then for $c\in\RR^m$ and $U\in\ZZ_q^{n\times t}$:
+		\begin{enumerate}
+			%    \item For $\sigma\geq\|\widetilde{T_A}\|\omega(\sqrt{\log m})$, we have $\Pr[\x\gets\DuA~:~\|\x\|>\sigma\sqrt{m}]\leq\rm{negl}(n)$.
+			\item Let $M$ be a matrix in $\ZZ_q^{n\times m_1}$ and $\sigma\geq\|\widetilde{T_A}\|\omega(\sqrt{\log(m+m_1)})$. Then there exists a PPT algorithm $\SampleLeft(A,M,T_A,U,\sigma)$ that outputs a vector $\e\in\ZZ^{m+m_1}$ distributed statistically close to $\cal{D}_{\L_q^{\u}(F_1),\sigma}$ where $F_1:=(A~|~M)$. In particular $\e\in \L_q^{U}(F_1)$, i.e., $F_1\cdot\e=U\mod q$.
+			\item Let $R$ be a matrix in $\ZZ^{k\times m}$ and let $s_R:=\sup_{\|\x\|=1}\|R\x\|$. Let $F_2:=(A~|~AR+B)$. Then for  $\sigma\geq\|\widetilde{T_B}\|s_R\omega(\sqrt{\log m})$, there exists a PPT algorithm \\$\SampleRight(A,B,R,T_B,U,\sigma)$ that outputs a vector $\e\in\ZZ^{m+k}$ distributed statistically close to $\cal{D}_{\L_q^{U}(F_2),\sigma}$. In particular $\e\in \L_q^{\u}(F_2)$, i.e., $F_2\cdot\e=U\mod q$. 
+			
+			Note that when $R$ is a random matrix in $\{-1,1\}^{m\times m}$ then $s_R<O(\sqrt{m})$ with overwhelming probability (cf.~{\cite[Lemma 15]{ABB10-EuroCrypt}}).
+		\end{enumerate}
+	\end{theorem}
+	
+	The security of our construction reduces to the LWE (Learning With Errors) problem introduced by Regev~\cite{Regev05}.
+	\begin{definition}[LWE problem]
+		Consider publicly a prime $q$, a positive integer $n$, and a distribution $\chi$ over $\ZZ_q$. An $(\ZZ_q,n,\chi)$-LWE problem instance consists of access to an unspecified challenge oracle $\cal{O}$, being either a noisy pseudorandom sampler $\cal{O}_\s$ associated with a secret $\s\in\ZZ_q^n$, or a truly random sampler $\cal{O}_\$$ who behaviors are as follows:
+		\begin{description}
+			\item[$\cal{O}_\s$:] samples of the form $(\u_i,v_i)=(\u_i,\u_i^T\s+x_i)\in\ZZ_q^n\times\ZZ_q$ where $\s\in\ZZ_q^n$ is a uniform secret key, $\u_i\in\ZZ_q^n$ is uniform and $x_i\in\ZZ_q$ is a noise withdrawn from $\chi$.
+			\item[$\cal{O}_\$$:] samples are uniform pairs in $\ZZ_q^n\times\ZZ_q$.
+		\end{description}\
+		The $(\ZZ_q,n,\chi)$-LWE problem allows responds queries to the challenge oracle $\cal{O}$. We say that an algorithm $\cal{A}$ decides the $(\ZZ_q,n,\chi)$-LWE problem if 
+		$$\Adv_{\cal{A}}^{\mathsf{LWE}}:=\left|\Pr[\cal{A}^{\cal{O}_\s}=1] - \Pr[\cal{A}^{\cal{O}_\$}=1] \right|$$    
+		is non-negligible for a random $\s\in\ZZ_q^n$.
+	\end{definition}
+	Regev~\cite{Regev05} showed that (see Theorem~\ref{thm:LWE} below) when $\chi$ is the distribution $\overline{\Psi}_\alpha$ of the random variable $\lfloor qX\rceil\mod q$ where $\alpha\in(0,1)$ and $X$ is a normal random variable with mean $0$ and standard deviation $\alpha/\sqrt{2\pi}$ then the LWE problem is hard. 
+	\begin{theorem}\label{thm:LWE}%\cite{Regev05}
+		If there exists an efficient, possibly quantum, algorithm for deciding the $(\ZZ_q,n,\overline{\Psi}_\alpha)$-LWE problem for $q>2\sqrt{n}/\alpha$ then there is an efficient quantum algorithm for approximating the SIVP and GapSVP problems, to within $\tilde{\cal{O}}(n/\alpha)$ factors in the $l_2$ norm, in the worst case.
+	\end{theorem}
+	Hence if we assume  the hardness of approximating the SIVP and GapSVP problems in lattices of dimension $n$ to within polynomial (in $n$) factors, then it follows from Theorem~\ref{thm:LWE} that deciding the LWE problem is hard when $n/\alpha$ is a polynomial in $n$.
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%=================
+	\section{Proposed Construction: IBEET}
+	\subsection{Construction}
+	\begin{description}
+		\item[Setup($\lambda$)]: On input a security parameter $\lambda$, set the parameters $q,n,m,\sigma,\alpha$ as in section \ref{sec:params}
+		\begin{enumerate}
+			\item Use $\TrapGen(q,n)$ to generate uniformly random $n\times m$-matrices $A, A'\in\ZZ_q^{n\times m}$ together with trapdoors $T_{A}$ and $T_{A'}$ respectively.
+			\item Select $l+1$ uniformly random $n\times m$ matrices $A_1,\cdots,A_l,B\in\ZZ_q^{n\times m}$.
+			\item Select a uniformly random matrix $U\in\ZZ_q^{n\times t}$.
+			\item $H: \{0,1\}^*\to \{0,1\}^t$ is a hash function.
+		        \item $H': \{0,1\}^*\to \{0,1\}^l$ is a hash function.
+			\item Output the public key and the secret key
+			$$\PK=(A,A',A_1,\cdots,A_l,B,U)\quad,\quad \MSK=(T_A,T_{A'}).$$
+		\end{enumerate} 
+		
+		\item[Extract($\PP,\MSK,\ID$)]: On input the public parameter $\PP$, a master secret key $\MSK$ and an identity $\ID=(b_1,\cdots,b_l)\in\{-1,1\}^l$:
+		\begin{enumerate}
+			\item Let $A_{\ID} =B + \sum_{i+1}^lb_iA_i\in\ZZ_q^{n\times m}$.
+			\item Sample $E_{\ID}, E'_{\ID}\in\ZZ_q^{2m\times t}$ as 
+			$$E_{\ID}\gets\SampleLeft(A,A_{\ID},T_A,U,\sigma)\quad,\quad E'_{\ID}\gets\SampleLeft(A',A_{\ID},T_{A'},U,\sigma).$$
+			\item Output $\SK_\ID:=(E_{\ID},E'_{\ID})$.
+		\end{enumerate}
+		Let $F_\ID=(A|A_\ID), F'_\ID=(A'|A_\ID)\in\ZZ_q$ then $F_\ID\cdot E_{\ID} = U, F'_\ID\cdot E'_{\ID} = U $ in $\ZZ_q$ and $E_{\ID},E'_{\ID}$ are distributed as $D_{\Lambda_q^U(F_\ID),\sigma}$, $D_{\Lambda_q^U(F'_\ID),\sigma}$ respectively.
+		\item[Encrypt($\PP,\ID,\bf{m}$)]: On input the public parameter $\PP$, an identity $\ID$ and a message $\bf{m}\in\{0,1\}^t$, do:
+		\begin{enumerate}
+			\item Let $A_{\ID} =B + \sum_{i+1}^lb_iA_i\in\ZZ_q^{n\times m}$.
+			\item Set $F_\ID:=(A|A_\ID), F'_\ID:=(A'|A_\ID)\in\ZZ_q^{n\times 2m}$
+			\item Choose uniformly random $\bf{s}_1, \bf{s}_2\in\ZZ_q^n$
+			\item Choose $\bf{x}_1,\bf{x}_2\in\overline{\Psi}_\alpha^t$ and compute
+			$$\CT_1 = U^T\bf{s}_1 +\bf{x}_1 +\bf{m}\big\lfloor\frac{q}{2}\big\rfloor\quad,\quad
+			\CT_2 = U^T\bf{s}_2 +\bf{x}_2 +H(\bf{m})\big\lfloor\frac{q}{2}\big\rfloor \in\ZZ_q^t.$$
+			\item Choose $l$ uniformly random matrices $R_i\in\{-1,1\}^{m\times m}$ for $i=1,\cdots,l$ and define $R_\ID=\sum_{i=1}^lb_iR_i\in\{-l,\cdots,l\}^{m\times m}$.
+			\item Choose $\bf{y}_1, \bf{y}_2\in\overline{\Psi}_\alpha^m$ and set $\bf{z}_1=R_\ID^T\bf{y}_1, \bf{z}_2=R_\ID^T\bf{y}_2\in\ZZ_q^m$.
+			\item Compute
+			$$\CT_3=F_\ID^T\bf{s}_1+\left[\begin{array}{c}\bf{y}_1\\ \bf{z}_1\end{array}\right], \CT_4=(F'_\ID)^T\bf{s}_2+\left[\begin{array}{c}\bf{y}_2\\ \bf{z}_2\end{array}\right]\in\ZZ_q^{2m}.$$
+			\item The ciphertext is $$\CT_\ID=(\CT_1,\CT_2,\CT_3,\CT_4)\in\ZZ_q^{2t+4m}.$$    
+		\end{enumerate}
+		
+		\item[Decrypt($\PP,\SK_\ID,\CT$)]: On input public parameter $\PP$, private key $\SK_\ID=(E_\ID,E'_\ID)$ and a ciphertext $\CT=(\CT_1,\CT_2,\CT_3,\CT_4)$, do:
+		\begin{enumerate}
+			\item Compute $\bf{w}\gets\CT_1-E_{\ID}^T\CT_3\in\ZZ_q^t$.
+			\item For each $i=1,\cdots, t$, compare $w_i$ and $\lfloor\frac{q}{2}\rfloor$. If they are close, output $m_i=1$ and otherwise output $m_i=0$. We then obtain the message $\bf{m}$.
+			\item Compute $\bf{w}'\gets\CT_2-(E'_{\ID})^T\CT_4\in\ZZ_q^t$.
+			\item For each $i=1,\cdots,t$, compare $w'_i$ and $\lfloor\frac{q}{2}\rfloor$. If they are close, output $h_i=1$ and otherwise output $h_i=0$. We then obtain the vector $\bf{h}$.
+			\item If $\bf{h}=H(\bf{m})$ then output $\bf{m}$, otherwise output $\perp$.
+		\end{enumerate}
+		\item[Trapdoor($\SK_\ID$)]: On input an identity's secret key $\SK_\ID=(E_\ID,E'_\ID)$, it outputs a trapdoor $\td_i=E'_\ID$.
+		\item[Test($\td_{\ID_i},\td_{\ID_j},\CT_{\ID_i},\CT_{\ID_j}$)]: On input trapdoors $\td_{\ID_i}, \td_{\ID_j}$ and ciphertexts $\CT_{\ID_i},\CT_{\ID_j}$ for identities $\ID_i, \ID_j$ respectively, computes 
+		\begin{enumerate}
+			\item For each $i$ (resp. $j$), compute $\bf{w}_i\gets \CT_{i2}-(E'_{\ID_i})^T\CT_{i4}\in\ZZ_q^t$. For each $k=1,\cdots, t$, compare each coordinate $w_{ik}$ with $\lfloor\frac{q}{2}\rfloor$ and output $\bf{h}_{ik}=1$ if they are close, and $0$ otherwise. At the end, we obtain the vector $\bf{h}_i$ (resp. $\bf{h}_j$). 
+			\item Output $1$ if  $\bf{h}_i=\bf{h}_j$ and $0$ otherwise.
+		\end{enumerate}
+	\end{description}
+	
+	
+	\begin{theorem}
+		Proposed IBEET construction above is correct if $H$  is a collision-resistant hash function.
+	\end{theorem}
+	\begin{proof}
+		It is easy to see that if $\CT$ is a valid ciphertext of $\bf{m}$ then the decryption will always output $\bf{m}$. Moreover, if $\CT_{\ID_i}$ and $\CT_{\ID_j}$ are valid ciphertext of $\bf{m}$ and $\bf{m}'$ of identities $\ID_i$ and $ID_j$ respectively. Then the Test process checks whether $H(\bf{m})=H(\bf{m}')$. If so then it outputs $1$, meaning that $\bf{m}=\bf{m}'$, which is always correct with overwhelming probability since $H$ is collision resistant. Hence, proposed IBEET described above is correct.
+	\end{proof}
+	
+	\subsection{Parameters}\label{sec:params}
+	We follow~{\cite[Section 7.3]{ABB10-EuroCrypt}} for choosing parameters for our scheme. Now for the system to work correctly we need to ensure
+	\begin{itemize}
+		\item the error term in decryption is less than ${q}/{5}$ with high probability, i.e., $q=\Omega(\sigma m^{3/2})$ and $\alpha<[\sigma lm\omega(\sqrt{\log m})]^{-1}$,
+		\item that the $\TrapGen$ can operate, i.e., $m>6n\log q$,
+		\item that $\sigma$ is large enough for $\SampleLeft$ and $\SampleRight$, i.e.,
+		$\sigma>lm\omega(\sqrt{\log m})$,
+		\item that Regev's reduction applies, i.e., $q>2\sqrt{n}/\alpha$,
+		\item that our security reduction applies (i.e., $q>2Q$ where $Q$ is the number of identity queries from the adversary).
+	\end{itemize}
+	Hence the following choice of parameters $(q,m,\sigma,\alpha)$ from \cite{ABB10-EuroCrypt} satisfies all of the above conditions, taking $n$ to be the security parameter:
+	\begin{equation}\label{eq:params}
+	\begin{aligned}
+	& m=6n^{1+\delta}\quad,\quad q=\max(2Q,m^{2.5}\omega(\sqrt{\log n})) \\
+	& \sigma = ml\omega(\sqrt{\log n})\quad,\quad\alpha=[l^2m^2\omega(\sqrt{\log n})]^{-1}
+	\end{aligned}
+	\end{equation}
+	and round up $m$ to the nearest larger integer and $q$ to the nearest larger prime. Here we assume that $\delta$ is such that $n^\delta>\lceil\log q\rceil=O(\log n)$. In {\cite[Section 7.5]{ABB10-EuroCrypt}}, it is shown that one can remove the restriction $q>2Q$ and that $q=m^{2.5}\omega(\sqrt{\log n})$ is sufficient.
+	\subsection{Security analysis}
+	In this section, we claim that our proposed scheme is  $\OW$ secure against Type-I adversaries (cf.~Theorem~\ref{thm:OW}) and $\IND$ secure against Type-II adversaries (cf. Theorem~\ref{thm:IND}). The proofs will follow a similar argument of Theorem~\ref{thm: wIND}. We omit them in the current version and refer to the full version.
+	
+	\begin{theorem}\label{thm:OW}
+		The IBEET with parameters $(q,n,m,\sigma,\alpha)$ as in~\eqref{eq:params} is  $\OW$ secure provided that $H$ is a one-way hash function and the $(\ZZ_q,n,\bar\Psi_\a)$-LWE assumption holds. In particular, suppose there exists a probabilistic algorithm $\cal{A}$ that wins the $\OW$ game with advantage $\epsilon$, then there is a probabilistic algorithm $\cal{B}$ that solves the $(\ZZ_q,n,\bar\Psi_\a)$-LWE problem with advantage $\epsilon'$ such that 
+		$$\epsilon'\geq \frac{1}{2q}\left(\epsilon-\epsilon_{H,\mathsf{OW}}\right)$$
+	where $\epsilon_{H,\mathsf{OW}}$ is the advantage of breaking the one-wayness of $H$.
+	\end{theorem}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{theorem}\label{thm:IND}
+		The IBEET with parameters $(q,n,m,\sigma,\alpha)$ as in~\eqref{eq:params}  is $\IND$ secure provided that $H$ is a one-way hash function and the $(\ZZ_q,n,\bar\Psi_\a)$-LWE assumption holds. In particular, suppose there exists a probabilistic algorithm $\cal{A}$ that wins the $\IND$ game with advantage $\epsilon$, then there is a probabilistic algorithm $\cal{B}$ that solves the $(\ZZ_q,n,\bar\Psi_\a)$-LWE problem with advantage $\epsilon'$ such that
+		$$\epsilon'\geq \frac{1}{4q}\left(\epsilon--\epsilon_{H,\mathsf{OW}}\right)$$
+		where $\epsilon_{H,\mathsf{OW}}$ is the advantage of breaking the one-wayness of $H$.
+	\end{theorem}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\section{Proposed Construction: IBEET against Insider Attack}
+	\subsection{Construction}
+	\begin{description}
+		\item[Setup($\lambda$)]: On input a security parameter $\lambda$, set the parameters $q,n,m,\sigma,\alpha$ as in section \ref{sec:params}
+		\begin{enumerate}
+			\item Use $\TrapGen(q,n)$ to generate uniformly random $n\times m$-matrices $A, A'\in\ZZ_q^{n\times m}$ together with trapdoors $T_{A}$ and $T_{A'}$ respectively.
+			\item Select $l+1$ uniformly random $n\times m$ matrices $A_1,\cdots,A_l,B\in\ZZ_q^{n\times m}$.
+			\item Select a uniformly random matrix $U\in\ZZ_q^{n\times t}$.
+			\item $H: \{0,1\}^*\to \ZZ_q^m$ is a hash function.
+			\item Output the public parameter, the master secret key $\MSK$ and the master token $\MTK$:
+			$$\PP=(A,A',A_1,\cdots,A_l,B,U)\quad,\quad \MSK=T_A\quad,\quad\MTK=T_{A'}.$$
+		\end{enumerate} 
+		
+		\item[Extract($\ID,\MSK,\MTK$)]: On input  a master secret key $\MSK$, a master token $\MTK$ and an identity $\ID=(b_1,\cdots,b_l)\in\{-1,1\}^l$:
+		\begin{enumerate}
+			\item Let $A_{\ID} =B + \sum_{i+1}^lb_iA_i\in\ZZ_q^{n\times m}$.
+			\item Sample $E_\ID\in\ZZ_q^{2m\times t}$ as $E_\ID\gets\SampleLeft(A,A_{\ID},T_A,U,\sigma).$
+			\item Output $\SK_\ID:=E_\ID$ and $\tok_\ID=T_{A'}$.
+		\end{enumerate}
+		Let $F_\ID=(A|A_\ID)$ then $F_\ID\cdot E_\ID = U $ in $\ZZ_q$ and $E_\ID$ is distributed as $D_{\Lambda_q^U(F_\ID),\sigma}$.
+		\item[Encrypt($\PP,\ID,\tok_\ID,\bf{m}$)]: On input the public parameter $\PP$, an identity $\ID$ with its token $\tok_\ID$ and a message $\bf{m}\in\{0,1\}^t$, do:
+		\begin{enumerate}
+			\item Let $A_{\ID} =B + \sum_{i+1}^lb_iA_i\in\ZZ_q^{n\times m}$ and set $F_\ID:=(A|A_\ID)\in\ZZ_q^{n\times 2m}$.
+			\item Choose uniformly random $\bf{s}', \bf{s}\in\ZZ_q^m$.
+			\item Choose $\bf{x}\in\overline{\Psi}_\alpha^t$ and compute
+			$$\CT_1 = T_{A'}\bf{s}'^T + H(\bf{m}\|T_{A'})\in\ZZ_q^m\quad,\quad
+			\CT_2 = U^T\bf{s} +\bf{x} +\bf{m}\big\lfloor\frac{q}{2}\big\rfloor\in\ZZ_q^t.$$
+			\item Choose $l$ uniformly random matrices $R_i\in\{-1,1\}^{m\times m}$ for $i=1,\cdots,l$ and define $R_\ID=\sum_{i=1}^lb_iR_i\in\{-l,\cdots,l\}^{m\times m}$.
+			\item Choose $\bf{y}\in\overline{\Psi}_\alpha^m$ and set $\bf{z}=R_\ID^T\bf{y}\in\ZZ_q^m$.
+			\item Compute
+			$$\CT_3=F_\ID^T\bf{s}+\left[\begin{array}{c}\bf{y}\\ \bf{z}\end{array}\right]\in\ZZ_q^{2m}.$$
+			\item The ciphertext is $$\CT_\ID=(\CT_1,\CT_2,\CT_3)\in\ZZ_q^{t+3m}.$$    
+		\end{enumerate}
+		
+		\item[Decrypt($\SK_\ID,\tok_\ID,\CT$)]: On input the private key $\SK_\ID=E_\ID$, token $\tok_\ID=T_{A'}$ and a ciphertext $\CT=(\CT_1,\CT_2,\CT_3)$, do:
+		\begin{enumerate}
+			\item Compute $\bf{w}\gets\CT_2-E_\ID^T\CT_3\in\ZZ_q^t$.
+			\item For each $i=1,\cdots, t$, compare $w_i$ and $\lfloor\frac{q}{2}\rfloor$. If they are close, output $m_i=1$ and otherwise output $m_i=0$. We then obtain the message $\bf{m}$. 
+			\item Compute $\bf{h}:=A'\CT_1\mod q$.
+			\item If $\bf{h}=A'H(\bf{m}\|T_{A'})\mod q$, then output $\bf{m}$, otherwise output $\perp$.
+		\end{enumerate}
+		\item[Test($\CT_{\ID_i},\CT_{\ID_j}$)]: On input ciphertexts $\CT_{\ID_i},\CT_{\ID_j}$ for identities $\ID_i, \ID_j$ respectively, if $A'\CT_{i,1} = A'\CT_{j,1}$ then output 1, and $0$ otherwise.
+	\end{description}
+	
+	
+	\begin{theorem}\label{thm:correctness weak}
+		The above construction is correct if $H$  is a collision-resistant hash function.
+	\end{theorem}
+\begin{proof}
+	It is easy to see that if $\CT$ is a valid ciphertext of $\bf{m}$ then the decryption will always output $\bf{m}$. Moreover, if $\CT_{\ID_i}$ and $\CT_{\ID_j}$ are valid ciphertext of $\bf{m}$ and $\bf{m}'$ of identities $\ID_i$ and $ID_j$ respectively. Then the Test process checks whether $H(\bf{m}\|T_{A'})=H(\bf{m}'\|T_{A'})$. If so then it outputs $1$, meaning that $\bf{m}=\bf{m}'$, which is always correct with overwhelming probability since $H$ is collision resistant. Hence, proposed construction described above is correct.
+\end{proof}
+
+\subsection{Security analysis}
+In this section, we prove that our IBEET scheme is $\wIND$ secure.
+\begin{theorem}\label{thm: wIND}
+	The IBEET construction with parameters $(q,n,m,\sigma,\alpha)$ as in~\eqref{eq:params}  is $\wIND$ secure provided that $H$ is a one-way hash function and the $(\ZZ_q,n,\bar\Psi_\a)$-LWE assumption holds. In particular, suppose there exists a probabilistic algorithm $\cal{A}$ that wins the $\wIND$ game with advantage $\epsilon$, then there is a probabilistic algorithm $\cal{B}$ that solves the $(\ZZ_q,n,\bar\Psi_\a)$-LWE problem with advantage $\epsilon'$ such that
+	$$\epsilon'\geq \frac{1}{4q}\left(\epsilon-\epsilon_{H,\mathsf{OW}}\right)$$
+	where $\epsilon_{H,\mathsf{OW}}$ is the advantage of breaking the one-wayness of $H$.
+\end{theorem}
+
+\begin{proof}
+	%The proof follows similarly to that of~{\cite[Theorem 25]{ABB10-EuroCrypt}} and we present here for completeness.
+	Assume that there is an adversary $\cal{A}$ who breaks the $\wIND$ security of the IBEET scheme with non-negligible probability $\epsilon$. We construct an algorithm $\cal{B}$ who solves the LWE problem using $\cal{A}$. We now describe the behavior of $\cal{B}$. Assume that $\ID^*$ is the target identity of the adversary $\cal{A}$ and the challenge ciphertext is
+$\CT_{\ID^*}^*=(\CT_{\ID^*,1}^*,\CT_{\ID^*,2}^*,\CT_{\ID^*,3}^*)$.
+
+We will proceed the proof in a sequence of games. In game $i$, let $\W_i$ denote the event that the adversary $\cal{A}$ correctly guesses the challenge bit. The adversary's advantage in Game $i$ is $\left|\Pr[\W_i]-\frac{1}{2}\right|$.
+\begin{description}
+\item[Game 0.] This is the original $\wIND$ game between the attacker $\cal{A}$ against the scheme and the $\wIND$ challenger.
+
+
+\item[Game 1.] This is similar to Game 0 except the way the challenger $\cal{B}$ generates the public key for the identity $\ID^*$, as the following. Let $R^*_i\in\{-1,1\}^{m\times m}$ for $i=1,\cdots,l$ be the ephemeral random matrices generated for the creation of the ciphertext $\CT_{\ID^*}^*$. In this game, the challenger chooses $l$ matrices $R_i^*$ uniformly random in $\{-1,1\}^{m\times m}$ and chooses $l$ random scalars $h_i\in\ZZ_q$ for $i=1,\cdots,l$. Then it generates $A,T_{A'}$ and $B$ as in Game 0 and constructs the matrices $A_i$ for $i=1,\cdots,l$ as
+$$A_i\gets A\cdot R^*_i-h_i\cdot B\in\ZZ_q^{n\times m}.$$
+The remainder of the game is unchanged with $R_i^*$, $i=1,\cdots, l$, used to generate the challenge ciphertext. Similar to the proof of {\cite[Theorem 25]{ABB10-EuroCrypt}} we have that the $A_i$ are close to uniform and hence they are random independent matrices in the view of the adversary as in Game 0. Therefore
+$$\Pr[\W_1] =\Pr[\W_0].$$
+\item[Game 2.] This is similar to Game 1 except that at the challenge phase, $\cal{B}$ chooses arbitrary message $\bf{m}'$ from the message space and  encrypts $\bf{m}'$ in $\CT_{\ID,1}$. Other steps are similar to Game 1. Here we can not expect the behavior of $\cal{A}$. Since $A'$ is public, $\cal{A}$ can obtain $A'H(\bf{m}'\|T_A')$. At the end if $\cal{A}$ outputs $\bf{m}'$, call this event $E_2$, then $\cal{A}$ has broken the one-wayness of the hash function $H$. Therefore we have
+$$\Pr[W_1]-\Pr[W_2]\leq\epsilon_{H,\mathsf{OW}}$$
+where $\epsilon_{H,\mathsf{OW}}$ is the advantage of $\cal{A}$ in breaking the one-wayness of $H$.
+\item[Game 3.] This game is similar to Game 2 except that we add an abort that is independent of adversary's view. The challenger behaves as follows:
+\begin{itemize}
+\item The setup phase is identical to Game 2 except that the challenger also chooses random $h_i\in\ZZ_q$, $i=1,\cdots, l$ and keeps it to itself.
+\item In the final guess phase, the adversary outputs a random guess $b'\in\{0,1\}$ for $b$. The challenger now does the following:
+\begin{enumerate}
+\item \textbf{Abort check:} for all queries $\CT_\ID$ to the decryption oracle $\cal{O}^\Dec$, the challenger checks whether the identity $\ID=(b_1,\cdots,b_l)$ satisfies $1+\sum_{i=1}^hb_ih_i\ne 0$ and $1+\sum_{i=1}^hb^*_ih_i= 0$. If not then the challenger overwrites $b'$ with a fresh random bit in $\{0,1\}$ and aborts the game.
+\item \textbf{Artificial abort:} the challenger samples a message $\Gamma$ such that $\Pr[\Gamma=1]$ is calculated through a function $\cal{G}$ (defined as in \cite{ABB10-EuroCrypt}) evaluated through all the queries of $\cal{A}$. If $\Gamma=1$ the challenger overwrites $b'$ with a fresh random bit and aborts the game (due to artificial abort); see \cite{ABB10-EuroCrypt} for more details.
+\end{enumerate}    
+\end{itemize}
+It follows from the proof of~{\cite[Theorem 25]{ABB10-EuroCrypt}} that
+$$\left|\Pr[\W_3]-\frac{1}{2}\right| \geq\frac{1}{4q}\left|\Pr[\W_2]-\frac{1}{2}\right|.$$
+\item[Game 4.]We now change the way how $A$ and $B$ are generated in Game 3. In Game 4, $A$ is a random matrix in $\ZZ_q^{n\times m}$ and $B$ is generated through $\TrapGen(q,n)$ together with an associated trapdoor $T_B$ for $\Lp_q(B)$. The construction of $A_i$ for $i=1,\cdots,l$ remains the same as in Game 3, i.e., $A_i=AR_i^*-h_iB$. When $\cal{A}$ queries $\cal{O}^{\Ext}(\ID)$ for the secret key of $\ID=(b_1,\cdots,b_l)$, $\cal{B}$ performs as follows:
+\begin{itemize}
+\item $\cal{B}$ sets
+$$F_\ID:=(A|B+\sum_{i=1}^lA_i) = (A|AR+h_{\ID} B)$$
+where
+\begin{equation}\label{eq:R and h}
+R\gets\sum_{i=1}^lb_iR_i^*\in\ZZ_q^{n\times m}\quad\text{and}\quad h_\ID\gets 1+\sum_{i=1}^lb_ih_i\in\ZZ_q.
+\end{equation}
+\item If $h_\ID=0$ then abort the game and pretend that the adversary outputs a random bit $b'$ as in Game 3.
+\item Set $E_\ID\gets\SampleRight(A,h_\ID B,R,T_B,U,\sigma)\in\ZZ_q^{2m\times t}$. Note that since $h_\ID$ is non-zero, and so $T_B$ is also a trapdoor for $h_\t B$. And hence the output $E_\ID$ satisfies $F_\ID\cdot E_\ID=U$ in $\ZZ_q^t$. Moreover, Theorem~\ref{thm:Gauss} shows that when $\sigma>\|\widetilde{T_B}\|s_R\omega(\sqrt{m})$ with $s_R:=\|R\|$, the generated $E_\ID$ is distributed close to $\cal{D}_{\L_q^U}(F_\ID)$ as in Game 2.
+\item Return $\SK_\ID := E_\ID$.
+\end{itemize}
+Game 4 is otherwise the same as Game 3. In particular, in the challenge phase, the challenger checks if $\ID^*=(b_1^*,\cdots,b_l^*)$ satisfies $1+\sum_{i=1}^lb_i^*h_i=0$. If not, the challenger aborts the game as in Game 3. Similarly, in Game 4, the challenger also implements an artificial abort in the guess phase. Since Game 3 and Game 2 are identical in the adversary's view, we have that
+$$\Pr[\W_4]=\Pr[\W_3].$$
+
+\item[Game 5.] Game 5 is identical to Game 4, except that the challenge ciphertext is always chosen randomly. And thus the advantage of $\cal{A}$ is always $0$.
+\end{description}
+We now show that Game 4 and Game 5 are computationally indistinguishable. If the abort event happens then the games are clearly indistinguishable. We, therefore, consider only the queries that do not cause an abort.
+
+Suppose now $\cal{A}$ has a non-negligible advantage in distinguishing Game 4 and Game 5. We use $\cal{A}$ to construct $\cal{B}$ to solve the LWE problem as follows.
+\begin{description}
+\item[Setup.] First of all, $\cal{B}$ requests from $\cal{O}$ and receives, for each $j=1,\cdots, t$ a fresh pair $(\bf{a}_i,d_i)\in\ZZ_q^n\times\ZZ_q$ and for each $i=1,\cdots,m$, a fresh pair $(\u_i,v_i)\in\ZZ_q^n\times\ZZ_q$. $\cal{A}$ announces an identity $\ID$ for the target identity. $\cal{B}$  constructs the public parameter $\PP$ as follows:
+
+\begin{enumerate}
+\item Assemble the random matrix $A\in\ZZ_q^{n\times m}$ from $m$ of previously given LWE samples by letting the $i$-th column of $A$ to be the $n$-vector $\u_i$ for all $i=1,\cdots,m$.
+\item Assemble the first $t$ unused  LWE samples $\bf{a}_1,\cdots,\bf{a}_t$ to become a public random matrix $U\in\ZZ_q^{n\times t}$.
+\item Run $\TrapGen(q,\sigma)$ to generate uniformly random matrices $A', B\in\ZZ_q^{n\times m}$ together with their trapdoor $T_{A'}$ and $T_B$ respectively.
+\item Choose  $l$ random matrices $R^*_i\in\{-1,1\}^{m\times m}$ for $i=1,\cdots,l$ and $l$ random scalars $h_i\in\ZZ_q$ for $i=1,\cdots,l$. Next it constructs the matrices $A_i$ for $i=1,\cdots,l$ as
+$$A_i\gets AR^*_i-h_iB\in\ZZ_q^{n\times m}.$$
+Note that it follows from the leftover hash lemma~{\cite[Theorem 8.38]{Shoup}}  that $A_1,\cdots,A_l$ are statistically close to uniform.
+\item Set $\PP:=(A,A',A_1,\cdots,A_l,B,U)$ and send to $\cal{A}$.
+\end{enumerate}
+\item[Queries.] $\cal{B}$ answers the queries as in Game 4, including aborting the game if needed.    
+\item[Challenge.]    
+Now when $\cal{A}$ sends $\cal{B}$ two messages $\bf{m}_0$ and $\bf{m}_1$ and a target identity $\ID^*$. $\cal{B}$ choose a random bit $b\in\{0,1\}$ and computes the challenge ciphertext  $\CT^*_{\ID^*}=(\CT^*_{\ID^*,1},\CT^*_{\ID^*,2},\CT^*_{\ID^*,3})$ for $\bf{m}_b$ as follows:
+\begin{enumerate}
+\item Choose a random $\bf{s}'\in\ZZ_q^m$ and compute
+$$\CT^*_{\ID^*,1}=T_{A'}\bf{s}'^T+H(\bf{m}_b\|T_{A'})\in\ZZ_q^m.$$
+\item Assemble $d_1,\cdots,d_t,v_1,\cdots,v_m$ from the entries of the samples to form $\d^*=[d_1,\cdots,d_t]^T\in\ZZ_q^t$ and $\v^*=[v_1,\cdots,v_m]^T\in\ZZ_q^m$.
+\item Set $\CT^*_{\ID^*,2}\gets\d^*+\bf{m}_b\lfloor\frac{q}{2}\rfloor\in\ZZ_q^t$.
+\item Compute $R^*_{\ID^*}:=\sum_{i=1}^lb_i^*R_i^*\in\{-l,\cdots,l\}^{m\times m}$.
+\item Set
+$$\CT^*_{\ID^*,3}:=\left[
+\begin{array}{c}
+\v^* \\
+(R^*_{\ID^*})^T\v^*
+\end{array}
+\right] \in\ZZ_q^{2m}.$$
+\end{enumerate}
+Then $\cal{B}$ sends $\CT^*_{\ID^*}=(\CT^*_{\ID^*,1},\CT^*_{\ID^*,2},\CT^*_{\ID^*,3})$ to $\cal{A}$.
+
+Note that in case of no abort, one has $h_{\ID^*}=0$ and so $F_{\ID^*}=(A|AR^*_{\ID^*})$.
+When the oracle is pseudorandom, i.e., $\cal{O}=\cal{O}_{\bf{s}}$ then $\v^*=A^T\bf{s}+\bf{y}$ for some random noise vector $\bf{y}\gets\overline{\Psi}_\alpha^m$. Therefore $\CT_{\ID^*,3}^*$ in Step 5 satisfies:
+$$\CT^*_{\ID^*,3}:=\left[
+\begin{array}{c}
+A^T\bf{s}+\bf{y} \\
+(AR^*_{\ID^*})^T\bf{s}+(R^*_{\ID^*})^T\bf{y}
+\end{array}
+\right] =(F_\ID^*)^T\bf{s}+\left[\begin{array}{c}\bf{y}\\ (R^*_{\ID^*})^T\bf{y} \end{array}\right].$$    
+Moreover, $\d^*=U^T\bf{s}+\bf{x}$ for some $\bf{x}\gets\overline{\Psi}_\alpha^t$ and therefore
+$$\CT^*_{\ID^*,2}=U^T\bf{s}+\bf{x}+\bf{m}_b\lfloor\frac{q}{2}\rfloor.$$
+Therefore $\CT_{\ID^*}^*$ is a valid ciphertext.
+
+When $\cal{O}=\cal{O}_{\$}$ we have that $\bf{d}^*$ is uniform in $\ZZ_q^t$ and $\v^*$ is uniform in $\ZZ_q^m$. Then obviously $\CT^*_{\ID^*,2}$ is uniform. It follows also from the leftover hash lemma (cf.~{\cite[Theorem 8.38]{Shoup}}) that $\CT^*_{\ID^*,3}$ is also uniform.
+
+\item[Guess.] After Phase 2, $\cal{A}$ guesses if it is interacting with a Game 4 or Game 5. The simulator also implements the artificial abort from Game 4 and Game 5 and output the final guess as to the answer to the LWE problem.
+\end{description}
+We have seen above that when $\cal{O}=\cal{O}_\s$ then the adversary's view is as in Game 4. When $\cal{O}=\cal{O}_\$$ then the view of the adversary is as in Game 5. Hence the advantage $\epsilon'$ of $\cal{B}$ in solving the LWE problem is the same as the advantage of $\cal{A}$ in distinguishing Game 4 and Game 5. Since $\Pr[\W_5]=0$, we have
+$$\Pr[\W_4]=\Pr[\W_4]-\Pr[\W_5]\le\epsilon'.$$
+Hence combining the above results yields the desired result.
+ we obtain that
+$$\epsilon=\Pr[W_0] \leq \epsilon_{H,\mathsf{OW}} +4q\epsilon'$$
+which implies
+$$\epsilon'\geq \frac{1}{4q}\left(\epsilon-\epsilon_{H,\mathsf{OW}}\right)$$
+as desired.
+\end{proof}
+
+
+\section{Conclusion}
+In this paper, we propose a direct construction of IBEET based on the hardness of Learning With Errors problem. Efficiency is the reason to avoid the instantiation of lattice-based IBEET from the generic construction by Lee et al. \cite{Lee2016}. In addition, we also modify our scheme to obtain an IBEET against insider attack. We will leave as a future work for improving our schemes to achieve CCA2-security as well as to support flexible authorisation.
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgement} This work is supported by the Australian Research Council
+Discovery Project DP180100665. We would like to thank Tsz Hon Yuen and anonymous reviewers for many helpful comments and fruitful discussions.
+%\newpage	
+
+
+\begin{thebibliography}{99}
+\bibliographystyle{acm}
+
+\bibitem{ABB10-EuroCrypt}
+Shweta Agrawal, Dan Boneh, and Xavier Boyen.
+\newblock Efficient lattice {(H)IBE} in the standard model.
+\newblock In {\em Advances in Cryptology - {EUROCRYPT} 2010, 29th Annual
+  International Conference on the Theory and Applications of Cryptographic
+  Techniques, Monaco / French Riviera, May 30 - June 3, 2010. Proceedings},
+  pages 553--572, 2010.
+
+\bibitem{Ajtai99}
+Mikl{\'{o}}s Ajtai.
+\newblock Generating hard instances of the short basis problem.
+\newblock In {\em Automata, Languages and Programming, 26th International
+  Colloquium, ICALP'99, Prague, Czech Republic, July 11-15, 1999, Proceedings},
+  pages 1--9, 1999.
+
+\bibitem{AP09}
+Jo{\"{e}}l Alwen and Chris Peikert.
+\newblock Generating shorter bases for hard random lattices.
+\newblock In {\em 26th International Symposium on Theoretical Aspects of
+  Computer Science, {STACS} 2009, February 26-28, 2009, Freiburg, Germany,
+  Proceedings}, pages 75--86, 2009.
+
+\bibitem{BCHK07}
+Dan Boneh, Ran Canetti, Shai Halevi, and Jonathan Katz.
+\newblock Chosen-ciphertext security from identity-based encryption.
+\newblock {\em {SIAM} J. Comput.}, 36(5):1301--1328, 2007.
+
+\bibitem{CHKP10}
+David Cash, Dennis Hofheinz, Eike Kiltz, and Chris Peikert.
+\newblock Bonsai trees, or how to delegate a lattice basis.
+\newblock In {\em Advances in Cryptology - {EUROCRYPT} 2010, 29th Annual
+  International Conference on the Theory and Applications of Cryptographic
+  Techniques, Monaco / French Riviera, May 30 - June 3, 2010. Proceedings},
+  pages 523--552, 2010.
+
+\bibitem{Duong19}
+Dung~Hoang Duong, Kazuhide Fukushima, Shinsaku Kiyomoto, Partha~Sarathi Roy,
+  and Willy Susilo.
+\newblock A lattice based public key encryption with equality test in standard
+  model.
+\newblock In {\em Information Security and Privacy - 24nd Australasian
+  Conference, {ACISP} 2019, Christchurch, New Zealand, July 3-5, 2019,
+  Proceedings}, pages 168--183, 2019.
+
+\bibitem{Lee2016}
+Hyung~Tae Lee, San Ling, Jae~Hong Seo, Huaxiong Wang, and Taek-Young Youn.
+\newblock Public key encryption with equality test in the standard model.
+\newblock {\em Cryptology ePrint Archive}, Report 2016/1182, 2016.
+
+\bibitem{Lee16}
+Hyung~Tae Lee, San Ling, Jae~Hong Seo, and Huaxiong Wang.
+\newblock Semi-generic construction of public key encryption and identity-based
+  encryption with equality test.
+\newblock {\em Inf. Sci.}, 373:419--440, 2016.
+
+\bibitem{IBEET-Lee18}
+Hyung~Tae Lee, Huaxiong Wang, and Kai Zhang.
+\newblock Security analysis and modification of id-based encryption with
+  equality test from {ACISP} 2017.
+\newblock In {\em Information Security and Privacy - 23rd Australasian
+  Conference, {ACISP} 2018, Wollongong, NSW, Australia, July 11-13, 2018,
+  Proceedings}, pages 780--786, 2018.
+
+\bibitem{IBEET-Ma16}
+Sha Ma.
+\newblock Identity-based encryption with outsourced equality test in cloud
+  computing.
+\newblock {\em Information Sciences}, 328:389--402, 2016.
+
+\bibitem{MR04}
+Daniele Micciancio and Oded Regev.
+\newblock Worst-case to average-case reductions based on gaussian measures.
+\newblock In {\em 45th Symposium on Foundations of Computer Science {(FOCS}
+  2004), 17-19 October 2004, Rome, Italy, Proceedings}, pages 372--381, 2004.
+
+\bibitem{Regev05}
+Oded Regev.
+\newblock On lattices, learning with errors, random linear codes, and
+  cryptography.
+\newblock In {\em Proceedings of the 37th Annual {ACM} Symposium on Theory of
+  Computing, Baltimore, MD, USA, May 22-24, 2005}, pages 84--93, 2005.
+
+\bibitem{Shor97}
+Peter~W. Shor.
+\newblock Polynomial-time algorithms for prime factorization and discrete
+  logarithms on a quantum computer.
+\newblock {\em {SIAM} J. Comput.}, 26(5):1484--1509, 1997.
+
+\bibitem{Shoup}
+Victor Shoup.
+\newblock {\em A computational introduction to number theory and algebra}.
+\newblock Cambridge University Press, second edition, 2008.
+
+\bibitem{IBEET-Wu17}
+Tong Wu, Sha Ma, Yi~Mu, and Shengke Zeng.
+\newblock Id-based encryption with equality test against insider attack.
+\newblock In {\em Information Security and Privacy - 22nd Australasian
+  Conference, {ACISP} 2017, Auckland, New Zealand, July 3-5, 2017, Proceedings,
+  Part {I}}, pages 168--183, 2017.
+
+\end{thebibliography}
+%\newpage
+\section*{Appendix A: An instantiation of Lee et al.'s construction}
+%\section{An instantiation of Lee et al.'s construction}\label{sec:Lee}
+In this section, we will present a lattice-based IBEET which is an instantiation of the Lee et al.'s construction~\cite{Lee2016}. In their generic construction, they need (i) a multi-bit HIBE scheme and (ii) an one-time signature scheme. To instantiate their construction, we modify the lattice based single-bit HIBE of \cite{ABB10-EuroCrypt} to multi-bit one and use it, along with the signature scheme, to have following construction of lattice based IBEET.  Even though one needs only a one-time signature scheme, we choose the full secure signature scheme from~\cite{ABB10-EuroCrypt} to unify the system, since in such case, both signature and HIBE schemes use the same public key.
+It is required to use multi-bit HIBE and signature scheme to have IBEET from Lee et al.'s \cite{Lee2016}.
+
+In what follows, we will denote by $[id_1.id_2.id_3]$ the identity of a $3$-level HIBE scheme where $id_1$ is the first level identity, $id_2$ is the second level identity and $id_3$ is third level identity. Below, we follow~\cite{Lee2016} to denote by $[\ID.0]$ (resp.  $[\ID.1]$) an identity in the second level in which we indicate that $\ID$ is the identity of the first level.
+\subsection{Construction}\label{sec:construct Lee}
+\begin{description}
+	%\begin{itemize}
+	\item[$\Setup$($\lambda$)]$\\$ On input security parameter $\lambda$, and a maximum hierarchy depth $3$, set the parameters $q, n, m, {\bar \sigma}, {\bar \alpha}$. The vector ${\bar \sigma} ~\&~ {\bar \alpha} \in \mathbb{R}^2$ and we use $\sigma_l$ and $\alpha_l$ to refer to their $l$- th coordinate. 
+	\begin{enumerate}
+		\item Use algorithm $\TrapGen(q, n)$ to select a uniformly random $n \times m$- matrix $A, A' \in \mathbb{Z}_q^{n \times m}$ with a basis $T_{A}, T_{A'}$ for $\L^{\perp}_q (A)$ and $\L^{\perp}_q (A')$, respectively. Repeat this Step until $A$ and $A'$ have rank $n$.
+		\item Select $l+1$ uniformly random $m \times m$ matrices $A_1, A_2,  A_3, \cdots, A_l, B \in \mathbb{Z}_q^{n \times m}$.
+		\item Select a uniformly random matrix $U\in\mathbb{Z}_q^{n\times t}$.
+		\item We need some hash functions $H: \{0, 1\}^* \rightarrow\{0,1\}^t$,  $H_1: \{0, 1\}^* \rightarrow \{-1, 1\}^t$, $H_2 :\{0,1\}^*\to\ZZ^n_q$ and a full domain difference map $H' :\ZZ_q^n\to\ZZ_q^{n\times n}$ as in~{\cite[Section 5]{ABB10-EuroCrypt}}.
+		\item Output the public key and the secret key
+		$$\PK=(A,A', A_1,A_2,A_3, \cdots, A_l, B,U)\quad,\quad\MSK=T_A ,\quad\SKS= T_{A'}$$
+	\end{enumerate}
+	
+	\item[Extract($\PP,\MSK,\ID$)]: On input the public parameter $\PP$, a master secret key $\MSK$ and an identity $\ID (\in \ZZ_q^n)=(b_1,\cdots,b_l)\in\{-1,1\}^l$:
+		\begin{enumerate}
+			\item Let $A_{\ID} =A_1+ H'(\ID)B\in\ZZ_q^{n\times m}$.
+			\item Sample $E\in\ZZ_q^{2m\times t}$ as 
+			$$E\gets\SampleBasisLeft(A,A_{\ID},T_A,U,\sigma).$$
+			\item Output $\SK_\ID:=E$.
+		\end{enumerate}
+		Let $F_\ID=(A|A_\ID)\in\ZZ_q^{n\times2m}$ then $F_\ID\cdot E = U$ in $\ZZ_q$ and $E$ is distributed as $D_{\Lambda_q^U(F_\ID),\sigma}$.
+	
+
+	
+	\item[$\Enc(\PP, \ID, \bf{m})$] $\\$
+	On input the public key $\PK$ and a message $\bf{m}\in\{0,1\}^t$ do
+	\begin{enumerate}
+		\item Choose uniformly random $\bf{s}_1,\bf{s}_2\in\ZZ_q^n$.
+		\item Choose $\bf{x}_1,\bf{x}_2\in\overline{\Psi}_\alpha^t$ and compute
+		\begin{align*}
+		\bf{c}_1 &= U^T\bf{s}_1 +\bf{x}_1 +\bf{m}\big\lfloor\frac{q}{2}\big\rfloor\in\ZZ_q^t,\\
+		\bf{c}_2 &= U^T\bf{s}_2 +\bf{x}_2 +H(\bf{m})\big\lfloor\frac{q}{2}\big\rfloor \in\ZZ_q^t.
+		\end{align*}
+		\item Set
+		$vk_s=A_1\|\cdots\|A_l$.
+		\item Set $id := H_2(vk_s)\in\ZZ_q^n$.
+		\item Build the following matrices in $\ZZ_q^{n\times 4m}$:
+		\begin{align*}
+		F_{\ID . 0. vk_s} &= (F_\ID | A_2 + H'(0)\cdot B | A_3 + H'(id)\cdot B),\\
+		F_{\ID . 1. vk_s} &= (F_\ID | A_2 + H'(1)\cdot B | A_3 + H'(id)\cdot B).
+		\end{align*}
+		
+		\item Choose a uniformly random $n\times 2m$ matrix $R$ in $\{-1,1\}^{n\times 3m}$.
+	\item Choose $\bf{y}_1, \bf{y}_2\in\overline{\Psi}_\alpha^m$ and set $\bf{z}_1=R^T\bf{y}_1, \bf{z}_2=R^T\bf{y}_2\in\ZZ_q^{3m}$.
+	\item Compute
+	\begin{align*}
+	\bf{c}_3&=F_{\ID . 0. vk_s}^T\bf{s}_1+[\bf{y}_1^T|\bf{z}_1^T]^T\in\ZZ_q^{4m},\\ 
+	\bf{c}_4&=F_{\ID . 1. vk_s}^T\bf{s}_2+[\bf{y}_2^T|\bf{z}_2^T]^T\in\ZZ_q^{4m}.
+	\end{align*}
+	\item Let $\bf{b}:= H_1(\bf{c}_1\|\bf{c}_2\|\bf{c}_3\|\bf{c}_4)\in\{-1,1\}^l$ and define a matrix
+	$$F=(A'| B+\sum_{i=1}^lb_iA_i)\in\ZZ_q^{n\times 2m}.$$
+	\item Extract a signature $\bf{e}\in\ZZ^{2m\times t}$ by
+	$$\bf{e}\gets\SampleBasisLeft(A',B+\sum_{i=1}^lb_iA_i,T_{A'},0,\sigma).$$
+	Note that $F\cdot\bf{e} =0\mod q$.
+	\item Output the ciphertext 
+	$$\CT=(vk,\bf{c}_1,\bf{c}_2,\bf{c}_3,\bf{c}_4,\bf{e}).$$
+	\end{enumerate}
+	
+	
+
+	
+	\item[$\Dec (\PP, \SK_{\ID},\CT)$]$\\$ On input a secret key $\SK_{\ID}$ and a ciphertext $\CT$, do 
+	\begin{enumerate}
+		\item Parse the ciphertext $\CT$ into $$(vk,\bf{c}_1,\bf{c}_2,\bf{c}_3,\bf{c}_4,\bf{e}).$$
+		\item Let $\bf{b}:= H_1(\bf{c}_1\|\bf{c}_2\|\bf{c}_3\|\bf{c}_4)\in\{-1,1\}^l$ and define a matrix
+		$$F=(A'| B+\sum_{i=1}^lb_iA_i)\in\ZZ_q^{n\times 2m}.$$
+		\item If $F\cdot\bf{e}=0$ in $\ZZ_q$ and $\|\bf{e}\|\leq\sigma\sqrt{2m}$ then continue to Step 4; otherwise output $\perp$.
+		\item Set $id := H_2(vk)\in\ZZ_q^n$ and build the following matrices:
+		\begin{align*}
+		F_{\ID . 0} &= (F_\ID | A_2 + H'(0)\cdot B) \in \ZZ_q^{n\times 3m},\\
+		F_{\ID . 1} &= (F_\ID | A_2 + H'(1)\cdot B) \in \ZZ_q^{n\times 3m}.
+		\end{align*}
+		\begin{align*}
+		F_{\ID . 0. vk_s} &= (F_\ID | A_2 + H'(0)\cdot B | A_3 + H'(id)\cdot B) \in \ZZ_q^{n\times 4m},\\
+		F_{\ID . 1. vk_s} &= (F_\ID | A_2 + H'(1)\cdot B | A_3 + H'(id)\cdot B) \in \ZZ_q^{n\times 4m}.
+		\end{align*}
+		\item Generate
+		\begin{align*}
+		E_{\ID . 0} \gets \SampleBasisLeft(F_\ID, A_2 + H'(0)\cdot B, E, U, \sigma)\\ ~s.t.~ F_{\ID . 0} \cdot E_{\ID . 0} = U\\
+		E_{\ID . 1} \gets \SampleBasisLeft(F_\ID, A_2 + H'(1)\cdot B, E, U, \sigma)\\ ~s.t.~ F_{\ID . 1} \cdot E_{\ID . 1} = U\\
+		E_{\ID . 0. vk_s} \gets \SampleBasisLeft(F_{\ID .0}, A_3 + H'(0)\cdot B, E_{\ID .0}, U, \sigma)\\ ~s.t.~ F_{\ID . 0.vk_s} \cdot E_{\ID . 0. vk_s} = U\\
+		E_{\ID . 1. vk_s} \gets \SampleBasisLeft(F_{\ID .1}, A_3 + H'(1)\cdot B, E_{\ID .1}, U, \sigma)\\ ~s.t.~ F_{\ID . 1.vk_s} \cdot E_{\ID . 1. vk_s} = U.
+		\end{align*}
+		\item Compute $\bf{w}\gets\bf{c}_1-E_{\ID . 0. vk_s}^T\bf{c}_3\in\ZZ_q^t$.
+		\item For each $i=1,\cdots, t$, compare $w_i$ and $\lfloor\frac{q}{2}\rfloor$. If they are close, output $m_i=1$ and otherwise output $m_i=0$. We then obtain the message $\bf{m}$.
+		\item Compute $\bf{w}'\gets\bf{c}_2-E_{\ID . 1. vk_s}^T\bf{c}_4\in\ZZ_q^t$.
+		\item For each $i=1,\cdots,t$, compare $w'_i$ and $\lfloor\frac{q}{2}\rfloor$. If they are close, output $h_i=1$ and otherwise output $h_i=0$. We then obtain the vector $\bf{h}$.
+		\item If $\bf{h}=H(\bf{m})$  then output $\bf{m}$, otherwise output $\perp$.
+	\end{enumerate}
+
+\item[$\Td(\SK_i)$]$\\$
+On input the secret key $\SK_i (= E_i)$ of a user $U_i$, run
+$$\td_i\gets\SampleBasisLeft(F_\ID, A_2 + H'(1)\cdot B, E_i, U, \sigma).$$
+%and returns the trapdoor $\td_i\in\ZZ_q^{2m\times 2m}$. Note that 
+%$$(A_i\| B_i+H'(1)\cdot A_{i,1})\cdot\td_i =0\in\ZZ_q^{n\times 2m}.$$
+
+
+\item[$\Test(\td_i,\td_j,\CT_i,\CT_j)$]$\\$ On input trapdoors $\td_i,\td_j$ and ciphertexts $\CT_i,\CT_j$ of users $U_i$ and $U_j$ respectively, for $k=i,j$, do the following
+\begin{enumerate}
+	\item Parse $\CT_k$ into 
+	$$(vk_k,\bf{c}_{k,1},\bf{c}_{k,2},\bf{c}_{k,3},\bf{c}_{k,4},\bf{e}_k).$$
+	\item %Set $\bar A_k =(A_k|B_k+H'(1)\cdot A_{k,1})$. 
+	Sample $E_{\ID_k . 1. vk_s}\in\ZZ_q^{5m\times t}$ from
+	$$ \SampleBasisLeft(F_{\ID_k .1}, A_{k, 3} + H'(1)\cdot B_k, E_{\ID_k .1}, U, \sigma).$$
+	\item Use $E_{\ID_k . 1. vk_s}$ to decrypt $\bf{c}_{k,2}$, $\bf{c}_{k,4}$ as in Step 8-9 of $\Dec(\SK,\CT)$ above to obtain the hash value $\bf{h}_k$.
+	\item If $\bf{h}_i=\bf{h}_j$ then ouput $1$; otherwise output $0$.
+\end{enumerate}
+\end{description}
+
+\begin{thm}[Correctness]
+	The above IBEET is correct if the hash function $H$ is collision resistant.
+\end{thm}
+\begin{proof}
+	Since we employ the multi-bit HIBE and signature scheme from~\cite{ABB10-EuroCrypt}, their correctness follow from~\cite{ABB10-EuroCrypt}. The Theorem follows from~{\cite[Theorem 1]{Lee2016}}.
+\end{proof}
+
+
+\subsection{Parameters}
+We follow~{\cite[Section 8.3]{ABB10-EuroCrypt}} for choosing parameters for our scheme. Now for the system to work correctly we need to ensure
+\begin{itemize}
+	\item the error term in decryption is less than ${q}/{5}$ with high probability, i.e., $q=\Omega(\sigma m^{3/2})$ and $\alpha<[\sigma lm\omega(\sqrt{\log m})]^{-1}$,
+	\item that the $\TrapGen$ can operate, i.e., $m>6n\log q$,
+	\item that $\sigma$ is large enough for $\SampleLeft$ and $\SampleRight$, i.e.,
+	$\sigma>lm\omega(\sqrt{\log m})$,
+	\item that Regev's reduction applies, i.e., $q>2\sqrt{n}/\alpha$,
+\end{itemize}
+Hence the following choice of parameters $(q,m,\sigma,\alpha)$ from \cite{ABB10-EuroCrypt} satisfies all of the above conditions, taking $n$ to be the security parameter:
+\begin{equation}\label{eq:params-HIBE}
+\begin{aligned}
+& m=6n^{1+\delta}\quad,\quad q=\max(2Q,m^{2.5}\omega(\sqrt{\log n})) \\
+& \sigma = ml\omega(\sqrt{\log n})\quad,\quad\alpha=[l^2m^2\omega(\sqrt{\log n})]
+\end{aligned}
+\end{equation}
+and round up $m$ to the nearest larger integer and $q$ to the nearest larger prime. Here we assume that $\delta$ is such that $n^\delta>\lceil\log q\rceil=O(\log n)$.
+
+
+
+
+\begin{thm}
+	The IBEET constructed in Section~\ref{sec:construct Lee} with paramaters as in~\eqref{eq:params-HIBE} is $\textsf{IND-ID-CCA2}$ secure provided that $H_1$ is collision resistant. 
+\end{thm}
+
+\begin{proof}
+	The HIBE is $\textsf{IND-sID-CPA}$ secure by~{\cite[Theorem 33]{ABB10-EuroCrypt}} and the signature is strongly unforgeable by~{\cite[Section 7.5]{ABB10-EuroCrypt}}. The result follows from {\cite[Theorem 5]{Lee2016}}.
+\end{proof}
+
+
+
+\begin{thm}[{\cite[Theorem 3]{Lee2016}}]
+	The IBEET with parameters $(q,n,m,\sigma,\alpha)$ as in~\eqref{eq:params-HIBE} is $\textsf{OW-ID-CCA2}$ provided that $H$ is one-way and  $H_1$ is collision resistant.
+\end{thm}
+
+\begin{proof}
+	The HIBE is $\textsf{IND-sID-CPA}$ secure by~{\cite[Theorem 33]{ABB10-EuroCrypt}} and the signature is strongly unforgeable by~{\cite[Section 7.5]{ABB10-EuroCrypt}}. The result follows from {\cite[Theorem 6]{Lee2016}}.
+\end{proof}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\if
+\section*{Appendix B: Proof of Theorem~\ref{thm:OW}}
+The proof is similar to that of {\cite[Theorem 25]{ABB10-EuroCrypt}} and we refer to the full version of the paper.
+Assume that there is a Type-I adversary $\cal{A}$ who breaks the $\OW$ security of the PKKET scheme with non-negligible probability $\epsilon$. We construct an algorithm $\cal{B}$ who solves the LWE problem using $\cal{A}$.  We now describe the behaviors of $\cal{B}$. Assume that $\ID^*$ is the target index of the adversary $\cal{A}$ and the challenge ciphertext is
+$\CT_{\ID^*}^*=(\CT_{\ID^*,1}^*,\CT_{\ID^*,2}^*,\CT_{\ID^*,3}^*,\CT_{\ID^*,4}^*)$.
+
+We will proceed the proof in a sequence of games. In game $i$, let $\W_i$ denote the event that the adversary $\cal{A}$ win the game. The adversary's advantage in Game $i$ is $\Pr[\W_i]$.    
+\begin{description}
+	\item[Game 0.] This is the original $\OW$ game between the attacker $\cal{A}$ against the scheme and the $\OW$ challenger.
+	
+	
+	
+	\item[Game 1.] This is similar to Game 0 except that at the challenge phase, $\cal{B}$ chooses two message $\bf{m}$ and $\bf{m}'$ in the message space and encrypt $\bf{m}$ in $\CT^*_{\ID^*,1}$ and $H(\bf{m}')$ in $\CT^*_{\ID^*,2}$. Other steps are similar to Game 0. Here we can not expect the behavior of $\cal{A}$. And since $\cal{A}$ has a trapdoor $E'_{\ID^*}$ and he can use $\CT^*_{\ID^*,2}$ and $\CT^*_{\ID^*,4}$ to obtain $H(\bf{m}')$. At the end if $\cal{A}$ outputs $\bf{m}'$, call this event $\cal{E}_1$, then $\cal{A}$ has broken the one-wayness of the hash function $H$. Thus
+	$$\Pr[\cal{E}_1]\leq\epsilon_{H,\mathsf{OW}}$$
+	where $\epsilon_{H,\mathsf{OW}}$ is the advantage of $\cal{A}$ in breaking the one-wayness of $H$. Therefore we have
+	\begin{align*}
+	\Pr[\W_1]  &= \Pr[\W_1|\E_1]\Pr[\E_1] +\Pr[\W_1|\neg \E_1]\Pr[\neg \E_1] \\
+	&=\Pr[\W_1|\E_1]\Pr[\E_1]+\Pr[\W_0]\Pr[\neg \E_1] \\
+	&\geq \frac{1}{|\cal{M}|}\Pr[\E_1]+\Pr[\W_0]-\Pr[\W_0]\Pr[\E_1]\\
+	&\geq\Pr[\W_0]-\Pr[\cal{E}_1]\\
+	&\geq\Pr[\W_0] -\epsilon_{H,\mathsf{OW}}
+	\end{align*}
+	and hence
+	$$\Pr[\W_0]-\Pr[\W_1]\leq\epsilon_{H,\mathsf{OW}}.$$
+	\item[Game 2.] This is similar to Game 1 except the way the challenger $\cal{B}$ generates the public key for the identity $\ID^*$, as the following. Let $R^*_i\in\{-1,1\}^{m\times m}$ for $i=1,\cdots,l$ be the ephemeral random matrices generated for the creation of the ciphertext $\CT_{\ID^*}^*$. In this game, the challenger chooses $l$ matrices $R_i^*$ uniformly random in $\{-1,1\}^{m\times m}$ and chooses $l$ random scalars $h_i\in\ZZ_q$ for $i=1,\cdots,l$. Then it generates $A,A'$ and $B$ as in Game 1 and constructs the matrices $A_i$ for $i=1,\cdots,l$ as 
+	$$A_i\gets A\cdot R^*_i-h_i\cdot B\in\ZZ_q^{n\times m}.$$
+	The remainder of the game is unchanged with $R_i^*$, $i=1,\cdots, l$, used to generate the challenge ciphertext. Similar to the proof of {\cite[Theorem 25]{ABB10-EuroCrypt}} we have that the $A_i$ are close to uniform and hence they are random independent matrices in the view of the adversary as in Game 1. Therefore
+	$$\Pr[\W_2] =\Pr[\W_1].$$
+	\item[Game 3.] Game 3 is similar to Game 2 except that we add an abort that is independent of adversary's view. The challenger behaves as follows:
+	\begin{itemize}
+		\item The setup phase is identical to Game 2 except that the challenger also chooses random $h_i\in\ZZ_q$, $i=1,\cdots, l$ and keeps it to itself.
+		\item In the final guess phase, the adversary outputs a guest $\bf{m}'$ for $\bf{m}$. The challenger now does the following:
+		\begin{enumerate}
+			\item \textbf{Abort check:} for all queries $\CT_\ID$ to the decryption oracle $\cal{O}^\Dec$, the challenger checks whether the identity $\ID=(b_1,\cdots,b_l)$ satisfies $1+\sum_{i=1}^hb_ih_i\ne 0$ and $1+\sum_{i=1}^hb^*_ih_i= 0$. If not then the challenger overwrites $\bf{m}'$ with a fresh message and aborts the game.
+			\item \textbf{Artificial abort:} the challenger samples a message $\Gamma$ such that $\Pr[\Gamma=1]$ is calculated through a function $\cal{G}$ (defined as in \cite{ABB10-EuroCrypt}) evaluated through all the queries of $\cal{A}$. If $\Gamma=1$ the challenger overwrites $\bf{m}'$ with a fresh message aborts the game (due to artificial abort); see \cite{ABB10-EuroCrypt} for more details.
+		\end{enumerate}    
+	\end{itemize}
+	A similar proof as in that of~{\cite[Theorem 25]{ABB10-EuroCrypt}} yields
+	$$\Pr[\W_3]\geq\frac{1}{2q}\Pr[\W_2].$$
+	
+	\item[Game 4.] We now change the way how $A$ and $B$ are generated in Game 3. In Game 4, $A$ is a random matrix in $\ZZ_q^{n\times m}$ and $B$ is generated through $\TrapGen(q,n)$ together with an associated trapdoor $T_B$ for $\Lp_q(B)$. The construction of $A_i$ for $i=1,\cdots,l$ remains the same as in Game 3, i.e., $A_i=AR_i^*-h_iB$. When $\cal{A}$ queries $\cal{O}^{\Dec}(\ID,\CT_\ID)$ for decrypting a ciphertext $\CT_\ID=(\CT_{\ID,1},\CT_{\ID,2},\CT_{\ID,3},$ $\CT_{\ID,4})$, $\cal{B}$ performs as follows:
+	\begin{itemize}
+		\item $\cal{B}$ sets
+		$$F_\ID:=(A|B+\sum_{i=1}^lA_i) = (A|AR+h_{\ID} B)$$
+		where 
+		\begin{equation}\label{eq:R and h}
+		R\gets\sum_{i=1}^lb_iR_i^*\in\ZZ_q^{n\times m}\quad\text{and}\quad h_\ID\gets 1+\sum_{i=1}^lb_ih_i\in\ZZ_q.
+		\end{equation}
+		\item If $h_\ID=0$ then abort the game and pretend that the adversary outputs a random message $\bf{m}'$ as in Game 3.
+		\item Set $E\gets\SampleRight(A,h_\ID B,R,T_B,U,\sigma)\in\ZZ_q^{2m\times t}$. Note that since $h_\ID$ is non-zero, and so $T_B$ is also a trapdoor for $h_\t B$. And hence the output $E$ satisfies $F_\ID\cdot E=U$ in $\ZZ_q^t$. Moreover, Theorem~\ref{thm:Gauss} shows that when $\sigma>\|\widetilde{T_B}\|s_R\omega(\sqrt{m})$ with $s_R:=\|R\|$, the generated $E$ is distributed close to $\cal{D}_{\L_q^U}(F_\ID)$ as in Game 3.
+		\item Compute $\bf{w}\gets\CT_{\ID,1}-E^T\CT_{\ID,3}\in\ZZ_q^t$. For each $i=1,\cdots,t$, compare $w_i$ with $\lfloor{\frac{q}{2}}\rfloor$, and output $1$ if they are close, and output $0$ otherwise. Then $\cal{B}$ can answer the decryption query $\cal{O}^{\Dec}(\ID,\CT_\ID)$ made by $\cal{A}$.
+	\end{itemize}
+	Game 4 is otherwise the same as Game 3. In particular, in the challenge phase, the challenger checks if $\ID^*=(b_1^*,\cdots,b_l^*)$ satisfies $1+\sum_{i=1}^lb_i^*h_i=0$. If not, the challenger aborts the game as in Game 3. Similarly, in Game 4, the challenger also implements an artificial abort in the guess phase. Since Game 4 and Game 3 are identical in the adversary's view, we have that
+	$$\Pr[\W_4]=\Pr[\W_3].$$
+	
+	\item[Game 5.] Game 5 is identical to Game 4, except that the challenge ciphertext is always chosen randomly. And thus the advantage of $\cal{A}$ is always $0$.
+\end{description}
+We now show that Game 4 and Game 5 are computationally indistinguishable. If the abort event happens then the games are clearly indistinguishable. We, therefore, consider only the queries that do not cause an abort.
+
+Suppose now $\cal{A}$ has a non-negligible advantage in distinguishing Game 4 and Game 5. We use $\cal{A}$ to construct $\cal{B}$ to solve the LWE problem as follows.
+\begin{description}
+	\item[Setup.] First of all, $\cal{B}$ requests from $\cal{O}$ and receives, for each $j=1,\cdots, t$ a fresh pair $(\bf{a}_i,d_i)\in\ZZ_q^n\times\ZZ_q$ and for each $i=1,\cdots,m$, a fresh pair $(\u_i,v_i)\in\ZZ_q^n\times\ZZ_q$. $\cal{A}$ announces an identity $\ID$ for the target identity. $\cal{B}$  constructs the public parameter $\PP$ as follows:
+	
+	\begin{enumerate}
+		\item Assemble the random matrix $A\in\ZZ_q^{n\times m}$ from $m$ of previously given LWE samples by letting the $i$-th column of $A$ to be the $n$-vector $\u_i$ for all $i=1,\cdots,m$.
+		\item Assemble the first $t$ unused  LWE samples $\bf{a}_1,\cdots,\bf{a}_t$ to become a public random matrix $U\in\ZZ_q^{n\times t}$.
+		\item Run $\TrapGen(q,\sigma)$ to generate uniformly random matrices $A', B\in\ZZ_q^{n\times m}$ together with their trapdoor $T_{A'}$ and $T_B$ respectively.
+		\item Choose  $l$ random matrices $R^*_i\in\{-1,1\}^{m\times m}$ for $i=1,\cdots,l$ and $l$ random scalars $h_i\in\ZZ_q$ for $i=1,\cdots,l$. Next it constructs the matrices $A_i$ for $i=1,\cdots,l$ as
+		$$A_i\gets AR^*_i-h_iB\in\ZZ_q^{n\times m}.$$
+		Note that it follows from the leftover hash lemma~{\cite[Theorem 8.38]{Shoup}}  that $A_1,\cdots,A_l$ are statistically close to uniform. 
+		\item Set $\PP:=(A,A',A_1,\cdots,A_l,B,U)$ and send to $\cal{A}$.
+	\end{enumerate}
+	\item[Queries.] $\cal{B}$ answers the queries as in Game 4, including aborting the game if needed.    
+	\item[Challenge.]    
+	Now $\cal{B}$ chooses random messages $\bf{m}^*$ and computes the challenge ciphertext  $\CT^*_{\ID^*}=(\CT^*_{\ID^*,1},\CT^*_{\ID^*,2},\CT^*_{\ID^*,3},\CT^*_{\ID^*,4})$  as follows:
+	\begin{enumerate}
+		\item Assemble $d_1,\cdots,d_t,v_1,\cdots,v_m$ from the entries of the samples to form $\d^*=[d_1,\cdots,d_t]^T\in\ZZ_q^t$ and $\v^*=[v_1,\cdots,v_m]^T\in\ZZ_q^m$.
+		\item Set $\CT^*_{\ID^*,1}\gets\d^*+\bf{m}^*\lfloor\frac{q}{2}\rfloor\in\ZZ_q^t$.
+		\item Choose a uniformly random $\bf{s}_2\in\ZZ_q^n$ and $\x_2\gets\overline{\Psi}_\alpha^t$, compute  $$\CT^*_{\ID^*,2}\gets U^T\bf{s}_2+\x_2+H(\bf{m}^*)\lfloor\frac{q}{2}\rfloor\in\ZZ_q^t.$$
+		\item Compute $R^*_{\ID^*}:=\sum_{i=1}^lb_i^*R_i^*\in\{-l,\cdots,l\}^{m\times m}$.
+		\item Set 
+		$$\CT^*_{\ID^*,3}:=\left[
+		\begin{array}{c}
+		\v^* \\
+		(R^*_{\ID^*})^T\v^*
+		\end{array}
+		\right] \in\ZZ_q^{2m}.$$
+		\item Choose $\bf{y}_2\gets\overline{\Psi}_\alpha^m$ and set
+		$$\CT^*_{\ID^*,4}:=\left[
+		\begin{array}{c}
+		(A')^T\bf{s}_2+\bf{y}_2 \\
+		(AR^*_{\ID^*})^T\bf{s}_2+(R^*_{\ID^*})^T\bf{y}_2
+		\end{array}
+		\right] \in\ZZ_q^{2m}.$$
+		%\item Choose random $\CT_{\t,2}\in\ZZ_q^t$ and $\CT_{\t,4}\in\ZZ_q^{2m}$.
+	\end{enumerate}
+	Then $\cal{B}$ sends $\CT^*_{\ID^*}=(\CT^*_{\ID^*,1},\CT^*_{\ID^*,2},\CT^*_{\ID^*,3},\CT^*_{\ID^*,4})$ to $\cal{A}$.
+	
+	Note that in case of no abort, one has $h_{\ID^*}=0$ and so $F_{\ID^*}=(A|AR^*_{\ID^*})$.
+	When the oracle is pseudorandom, i.e., $\cal{O}=\cal{O}_{\bf{s}}$ then $\v^*=A^T\bf{s}+\bf{y}$ for some random noise vector $\bf{y}\gets\overline{\Psi}_\alpha^m$. Therefore $\CT_{\ID^*,3}^*$ in Step 5 satisfies:
+	$$\CT^*_{\ID^*,3}:=\left[
+	\begin{array}{c}
+	A^T\bf{s}+\bf{y} \\
+	(AR^*_{\ID^*})^T\bf{s}+(R^*_{\ID^*})^T\bf{y}
+	\end{array}
+	\right] =(F_\ID^*)^T\bf{s}+\left[\begin{array}{c}\bf{y}\\ (R^*_{\ID^*})^T\bf{y} \end{array}\right].$$    
+	Moreover, $\d^*=U^T\bf{s}+\bf{x}$ for some $\bf{x}\gets\overline{\Psi}_\alpha^t$ and therefore 
+	$$\CT^*_{\ID^*,1}=U^T\bf{s}+\bf{x}+\bf{m}^*\lfloor\frac{q}{2}\rfloor.$$
+	One can easily see that
+	$$\CT^*_{\ID^*,4}=[A'|AR^*_{\ID^*}]^T\bf{s}_2+\left[\begin{array}{c}\bf{y}_2\\ (R^*_{\ID^*})^T\bf{y}_2 \end{array}\right].$$
+	Therefore $\CT_{\ID^*}^*$ is a valid ciphertext.
+	
+	When $\cal{O}=\cal{O}_{\$}$ we have that $\bf{d}^*$ is uniform in $\ZZ_q^t$ and $\v^*$ is uniform in $\ZZ_q^m$. Then obviously $\CT^*_{\ID^*,1}$ is uniform. It follows also from the leftover hash lemma (cf.~{\cite[Theorem 8.38]{Shoup}}) that $\CT^*_{\ID^*,3}$ is also uniform.
+	
+	\item[Guess.] After Phase 2, $\cal{A}$ guesses if it is interacting with a Game 4 or Game 5. The simulator also implements the artificial abort from Game 4 and Game 5 and output the final guess as the answer to the LWE problem.
+\end{description}
+We have seen above that when $\cal{O}=\cal{O}_\s$ then the adversary's view is as in Game 4. When $\cal{O}=\cal{O}_\$$ then the view of adversary is as in Game 5. Hence the advantage $\epsilon'$ of $\cal{B}$ in solving the LWE problem is the same as the advantage of $\cal{A}$ in distinguishing Game 4 and Game 5. Since $\Pr[\W_5]=0$, we have
+$$\Pr[\W_4]=\Pr[\W_4]-\Pr[\W_5]\le\epsilon'.$$
+Hence combining the above results, we obtain that
+$$\epsilon=\Pr[W_0] \leq \epsilon_{H,\mathsf{OW}} +2q\epsilon'$$
+which implies
+$$\epsilon'\geq \frac{1}{2q}\left(\epsilon-\epsilon_{H,\mathsf{OW}}\right)$$
+as desired.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix C: Proof of Theorem~\ref{thm:IND}}
+The proof is similar to that of Theorem~\ref{thm:OW}. Assume that there is a Type-II adversary $\cal{A}$ who breaks the $\IND$ security of the PKKET scheme with non-negligible probability $\epsilon$. We construct an algorithm $\cal{B}$ who solves the LWE problem using $\cal{A}$. We now describe the behavior of $\cal{B}$. Assume that $\ID^*$ is the target identity of the adversary $\cal{A}$ and the challenge ciphertext is
+$\CT_{\ID^*}^*=(\CT_{\ID^*,1}^*,\CT_{\ID^*,2}^*,\CT_{\ID^*,3}^*,\CT_{\ID^*,4}^*)$.
+
+We will proceed the proof in a sequence of games. In game $i$, let $\W_i$ denote the event that the adversary $\cal{A}$ correctly guesses the challenge bit. The adversary's advantage in Game $i$ is $\left|\Pr[\W_i]-\frac{1}{2}\right|$. 
+\begin{description}
+	\item[Game 0.] This is the original $\IND$ game between the attacker $\cal{A}$ against the scheme and the $\IND$ challenger.
+	
+	
+	\item[Game 1.] This is similar to Game 2 in the proof of Theorem~\ref{thm:OW} and we have
+	$$\Pr[\W_1] =\Pr[W_0].$$
+	\item[Game 2.] Game 2 is similar to Game 1 except that we add an abort as in the proof of Theorem~\ref{thm:OW}. 
+	It follows from the proof of~{\cite[Theorem 25]{ABB10-EuroCrypt}} that
+	$$\left|\Pr[\W_2]-\frac{1}{2}\right| \geq\frac{1}{4q}\left|\Pr[\W_1]-\frac{1}{2}\right|.$$
+	
+	\item[Game 3.] This game is similar to Game 4 in the proof of Theorem~\ref{thm:OW}, and we have
+	$$\Pr[\W_3]=\Pr[\W_4].$$
+	
+	\item[Game 4.] Game 4 is identical to Game 3, except that the challenge ciphertext is always chosen randomly. And thus the advantage of $\cal{A}$ is always $0$.
+\end{description}
+We now show that Game 3 and Game 4 are computationally indistinguishable. If the abort event happens then the games are clearly indistinguishable. We, therefore, consider only the queries that do not cause an abort.
+
+Suppose now $\cal{A}$ has a non-negligible advantage in distinguishing Game 4 and Game 5. We use $\cal{A}$ to construct $\cal{B}$ to solve the LWE problem similar to the proof of Theorem~\ref{thm:OW}. Note that in the $\IND$ game, we allow the adversary to query the trapdoor oracle $\cal{O}^\Td$. And since we generate $A'$ together with $T_{A'}$ from $\TrapGen(q,n)$
+and we can use $T_{A'}$ to generate a trapdoor $E'_\ID$ to answer to such queries. 
+
+We have seen above that when $\cal{O}=\cal{O}_\s$ then the adversary's view is as in Game 3. When $\cal{O}=\cal{O}_\$$ then the view of the adversary is as in Game 4. Hence the advantage $\epsilon'$ of $\cal{B}$ in solving the LWE problem is the same as the advantage of $\cal{A}$ in distinguishing Game 3 and Game 4. Since $\Pr[W_5]=\frac{1}{2}$, we have
+$$\left|\Pr[W_4]-\frac{1}{2}\right|=|\Pr[W_4]-\Pr[W_5]|\le\epsilon'.$$
+Hence combining the above results, we obtain that
+$$\epsilon=\left|\Pr[W_0]-\frac{1}{2} \right| \leq 4q\epsilon'$$
+which implies
+$$\epsilon'\geq \frac{1}{4q}\cdot\epsilon$$
+as desired.
+
+
+\fi
+
+
+
